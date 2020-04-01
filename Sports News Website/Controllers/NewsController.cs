@@ -8,7 +8,7 @@ using Sports_News_Website.Models;
 
 namespace Sports_News_Website.Controllers
 {
-    public class NewsController : Controller
+    public class NewsController : Controller, IBaseController<News>
     {
         SportsNewsDBContext db = new SportsNewsDBContext();
         [HttpGet]
@@ -23,46 +23,56 @@ namespace Sports_News_Website.Controllers
             {
                 db.News.Add(news);
                 db.SaveChanges();
-                return RedirectToAction("Read");
+                return RedirectToAction(nameof(Read));
             }
             return View();
         }
         [HttpGet]
-        public ActionResult Read(News news)
+        public ActionResult Read()
         {
+            var news = db.News.ToList();
             return View(news);
         }
         [HttpGet]
-        public ActionResult Update(News news)
+        public ActionResult Update(int? id)
         {
+            News news = db.News.Find(id);
             return View(news);
         }
         [HttpPost]
-        public ActionResult Update(int id)
+        public ActionResult Update(News news)
         {
-            News news = new News();
-            if (news.ID == id)
+            if (ModelState.IsValid)
             {
                 db.Entry(news).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Read");
+                return RedirectToAction(nameof(Read));
+            }
+            else if(!ModelState.IsValid)
+            {
+                return HttpNotFound();
             }
             return View(news);
         }
         [HttpGet]
-        public ActionResult Delete(News news)
+        public ActionResult Delete(int? id)
         {
+            News news = db.News.Find(id);
             return View(news);
         }
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            News news = new News();
-            if (news.ID == id)
+            News news = db.News.Find(id);
+            if (ModelState.IsValid)
             {
                 db.News.Remove(news);
                 db.SaveChanges();
-                return RedirectToAction("Read");
+                return RedirectToAction(nameof(Read));
+            }
+            else if (!ModelState.IsValid)
+            {
+                return HttpNotFound();
             }
             return View(news);
         }

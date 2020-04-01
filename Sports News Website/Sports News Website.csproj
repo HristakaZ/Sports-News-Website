@@ -129,14 +129,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\ScaffoldedController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202003312041074_CreatingTheDB.cs" />
     <Compile Include="Migrations\202003312041074_CreatingTheDB.Designer.cs">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004012315034_AddingBaseDbSet.cs" />
+    <Compile Include="Migrations\202004012315034_AddingBaseDbSet.Designer.cs">
+      <DependentUpon>202004012315034_AddingBaseDbSet.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Athletes.cs" />
@@ -183,16 +187,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Scaffolded\Create.cshtml" />
-    <Content Include="Views\Scaffolded\Delete.cshtml" />
-    <Content Include="Views\Scaffolded\Details.cshtml" />
-    <Content Include="Views\Scaffolded\Edit.cshtml" />
-    <Content Include="Views\Scaffolded\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Update.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\News\" />
+    <Folder Include="Views\IBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -210,6 +213,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003312041074_CreatingTheDB.resx">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004012315034_AddingBaseDbSet.resx">
+      <DependentUpon>202004012315034_AddingBaseDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
