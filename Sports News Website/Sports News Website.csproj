@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -138,13 +139,10 @@
     <Compile Include="Migrations\202003312041074_CreatingTheDB.Designer.cs">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004012315034_AddingBaseDbSet.cs" />
-    <Compile Include="Migrations\202004012315034_AddingBaseDbSet.Designer.cs">
-      <DependentUpon>202004012315034_AddingBaseDbSet.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Athletes.cs" />
     <Compile Include="Models\Comments.cs" />
+    <Compile Include="Models\Generic Model.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Sports.cs" />
     <Compile Include="Models\SportsNewsDBContext.cs" />
@@ -187,7 +185,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Update.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Read.cshtml" />
@@ -195,6 +192,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\IBaseControllerBase\" />
     <Folder Include="Views\IBase\" />
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +211,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003312041074_CreatingTheDB.resx">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004012315034_AddingBaseDbSet.resx">
-      <DependentUpon>202004012315034_AddingBaseDbSet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

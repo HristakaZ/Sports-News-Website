@@ -8,9 +8,9 @@ using Sports_News_Website.Models;
 
 namespace Sports_News_Website.Controllers
 {
-    public class NewsController : Controller, IBaseController<News>
+    public class NewsController : BaseController<News>
     {
-        SportsNewsDBContext db = new SportsNewsDBContext();
+        /*
         [HttpGet]
         public ActionResult Create()
         {
@@ -75,6 +75,6 @@ namespace Sports_News_Website.Controllers
                 return HttpNotFound();
             }
             return View(news);
-        }
+        }*/
     }
 }

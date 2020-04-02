@@ -4,7 +4,7 @@ namespace Sports_News_Website.Models
     using System.Data.Entity;
     using System.Linq;
 
-    public class SportsNewsDBContext : DbContext
+    public class SportsNewsDBContext<T> : DbContext where T : class
     {
         // Your context has been configured to use a 'SportsNewsDBContext' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
@@ -26,7 +26,7 @@ namespace Sports_News_Website.Models
         public virtual DbSet<Sports> Sports { get; set; }
         public virtual DbSet<Athletes> Athletes { get; set; }
         public virtual DbSet<Comments> Comments { get; set; }
-
+        public virtual DbSet<T> Entities { get; set; }
     }
 
     //public class MyEntity

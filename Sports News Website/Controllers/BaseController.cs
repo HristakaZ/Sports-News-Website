@@ -8,10 +8,10 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Controllers
 {
-    public class BaseController<T> : Controller, IBaseController<T> where T : SportsNewsDBContext
+    public class BaseController<T> : Controller, IBaseController<T> where T : class, new()
     {
-        SportsNewsDBContext db = new SportsNewsDBContext();
-        DbSet<T> entities;
+        readonly DbSet<T> db;
+        readonly SportsNewsDBContext<T> dbContext = new SportsNewsDBContext<T>();
         [HttpGet]
         public ActionResult Create()
         {
@@ -22,34 +22,61 @@ namespace Sports_News_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry.entities(entity);
+                db.Add(entity);
+                dbContext.SaveChanges();
             }
-            return View();
+            return View(entity);
         }
         [HttpGet]
         public ActionResult Read()
         {
-            return View();
+            var entities = dbContext.Entities.ToList();
+            return View(entities);
         }
         [HttpGet]
         public ActionResult Update(int? id)
         {
-            return View();
+            T entity = new T();
+            entity = dbContext.Entities.Find(id);
+            return View(entity);
         }
         [HttpPost]
         public ActionResult Update(T entity)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                dbContext.Entry(entity).State = EntityState.Modified;
+                dbContext.SaveChanges();
+            }
+            else if(!ModelState.IsValid)
+            {
+                return HttpNotFound();
+            }
+            return View(entity);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            return View();
+            T entity = new T();
+            entity = dbContext.Entities.Find(id);
+            return View(entity);
         }
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            return View();
+            T entity = new T();
+            entity = dbContext.Entities.Find(id);
+            if (ModelState.IsValid)
+            {
+                db.Remove(entity);
+                dbContext.SaveChanges();
+                return RedirectToAction(nameof(Read));
+            }
+            else if (!ModelState.IsValid)
+            {
+                return HttpNotFound();
+            }
+            return View(entity);
         }
-    }
+    }  
 }
