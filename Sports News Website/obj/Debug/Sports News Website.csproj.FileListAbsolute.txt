@@ -82,3 +82,5 @@ C:\Users\User\source\repos\Sports News Website\Sports News Website\bin\EntityFra
 C:\Users\User\source\repos\Sports News Website\Sports News Website\bin\EntityFramework.SqlServer.xml
 C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports_News_Website.Migrations.CreatingTheDB.resources
 C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports News Website.csproj.GenerateResource.cache
+C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports News Website.csprojAssemblyReference.cache
+C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports_News_Website.Migrations.NormalizedDatabase.resources

@@ -10,8 +10,7 @@ namespace Sports_News_Website.Controllers
 {
     public class BaseController<T> : Controller, IBaseController<T> where T : class, new()
     {
-        readonly DbSet<T> db;
-        readonly SportsNewsDBContext<T> dbContext = new SportsNewsDBContext<T>();
+        readonly SportsNewsDBContext dbContext = new SportsNewsDBContext();
         [HttpGet]
         public ActionResult Create()
         {
@@ -22,22 +21,23 @@ namespace Sports_News_Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Add(entity);
+                dbContext.Entry(entity).State = EntityState.Added;
                 dbContext.SaveChanges();
+                return RedirectToAction(nameof(Read));
             }
             return View(entity);
         }
         [HttpGet]
         public ActionResult Read()
         {
-            var entities = dbContext.Entities.ToList();
+            var entities = dbContext.Set<T>().ToList();
             return View(entities);
         }
         [HttpGet]
         public ActionResult Update(int? id)
         {
             T entity = new T();
-            entity = dbContext.Entities.Find(id);
+            entity = dbContext.Set<T>().Find(id);
             return View(entity);
         }
         [HttpPost]
@@ -47,6 +47,7 @@ namespace Sports_News_Website.Controllers
             {
                 dbContext.Entry(entity).State = EntityState.Modified;
                 dbContext.SaveChanges();
+                return RedirectToAction(nameof(Read));
             }
             else if(!ModelState.IsValid)
             {
@@ -58,17 +59,17 @@ namespace Sports_News_Website.Controllers
         public ActionResult Delete(int? id)
         {
             T entity = new T();
-            entity = dbContext.Entities.Find(id);
+            entity = dbContext.Set<T>().Find(id);
             return View(entity);
         }
         [HttpPost]
         public ActionResult Delete(int id)
         {
             T entity = new T();
-            entity = dbContext.Entities.Find(id);
+            entity = dbContext.Set<T>().Find(id);
             if (ModelState.IsValid)
             {
-                db.Remove(entity);
+                dbContext.Entry(entity).State = EntityState.Deleted;
                 dbContext.SaveChanges();
                 return RedirectToAction(nameof(Read));
             }

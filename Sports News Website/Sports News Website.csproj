@@ -132,6 +132,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -139,10 +140,13 @@
     <Compile Include="Migrations\202003312041074_CreatingTheDB.Designer.cs">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004041303533_NormalizedDatabase.cs" />
+    <Compile Include="Migrations\202004041303533_NormalizedDatabase.Designer.cs">
+      <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Athletes.cs" />
     <Compile Include="Models\Comments.cs" />
-    <Compile Include="Models\Generic Model.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\Sports.cs" />
     <Compile Include="Models\SportsNewsDBContext.cs" />
@@ -185,15 +189,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Read.cshtml" />
     <Content Include="Views\News\Update.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
-    <Content Include="Views\News\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\IBaseControllerBase\" />
     <Folder Include="Views\IBase\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -211,6 +216,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003312041074_CreatingTheDB.resx">
       <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041303533_NormalizedDatabase.resx">
+      <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
