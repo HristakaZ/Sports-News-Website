@@ -1,4 +1,5 @@
-﻿using Sports_News_Website.Models;
+﻿using Sports_News_Website.CustomAttributes;
+using Sports_News_Website.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,12 @@ namespace Sports_News_Website.Controllers
         public ActionResult Login(Users user)
         {
             SportsNewsDBContext dbContext = new SportsNewsDBContext();
-            List<Users> users = new List<Users>();
             int id = user.ID;
-            if (users.Exists(x => x.Username == user.Username && x.Password == user.Password))
+            if (dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password))
             {
                 return RedirectToAction(nameof(Read));
             }
-            else if (!users.Exists(x => x.Username == user.Username && x.Password == user.Password))
+            else if (!dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password))
             {
                 return HttpNotFound();
             }
