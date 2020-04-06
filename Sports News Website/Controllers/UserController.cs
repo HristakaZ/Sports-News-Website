@@ -31,24 +31,17 @@ namespace Sports_News_Website.Controllers
         public ActionResult Login(Users user)
         {
             SportsNewsDBContext dbContext = new SportsNewsDBContext();
-            List<Users> users = new List<Users>();
-            int id = user.ID;
-            if (users.Exists(x => x.Username == user.Username && x.Password == user.Password))
+            if (dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password) &&
+                ModelState.IsValid)
             {
+                System.Web.HttpContext.Current.Session["LoginUser"] = user;
+                Session["Username"] = user.Username;
                 return RedirectToAction(nameof(Read));
             }
-            else if (!users.Exists(x => x.Username == user.Username && x.Password == user.Password))
+            else if (!dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password))
             {
                 return HttpNotFound();
             }
-            user = dbContext.Users.Find(id);
-            var session = System.Web.HttpContext.Current.Session;
-            session.Add("userid", user);
-            var sessionUserID = (int)session["userid"];
-            /*if (sessionUserID)
-            {
-                tui za admina (napravi go v atribut)
-            }*/
             return View(user);
         }
     }
