@@ -36,7 +36,7 @@ namespace Sports_News_Website.Controllers
             {
                 System.Web.HttpContext.Current.Session["LoginUser"] = user;
                 Session["UserID"] = user.ID;
-                Session["Username"] = user.Username;
+                Session["UserName"] = user.Username;
                 Session["UserAuthorization"] = user.IsAdmin;
                 return RedirectToAction(nameof(Read));
             }
@@ -50,7 +50,7 @@ namespace Sports_News_Website.Controllers
         {
             Session.Remove("LoginUser");
             Session.Remove("UserID");
-            Session.Remove("Username");
+            Session.Remove("UserName");
             Session.Remove("UserAuthorization");
             return RedirectToAction(nameof(Read));
         }
