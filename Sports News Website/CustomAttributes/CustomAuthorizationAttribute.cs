@@ -1,4 +1,5 @@
 ﻿using Sports_News_Website.Repositories;
+using Sports_News_Website.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace Sports_News_Website.CustomAttributes
 {
     public class CustomAuthorizationAttribute : FilterAttribute, IAuthorizationFilter
     {
-        SessionUserRepository sessionUserRepository = new SessionUserRepository();
+        SessionUserService sessionUserService = new SessionUserService();
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (sessionUserRepository.IsAdmin)
+            if (sessionUserService.IsAdmin)
             {
                 return;
             }
-            else if (!sessionUserRepository.IsAdmin)
+            else if (!sessionUserService.IsAdmin)
             {
                 filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };
             }

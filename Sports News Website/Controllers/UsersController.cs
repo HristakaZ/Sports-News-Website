@@ -1,4 +1,5 @@
 ﻿using Sports_News_Website.Models;
+using Sports_News_Website.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Controllers
 {
-    public class UsersController : BaseController<Users>
+    public class UsersController : BaseRepository<Users>
     {
         [HttpGet]
         public ActionResult Register()
@@ -30,22 +31,32 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public ActionResult Login(Users user)
         {
-            SportsNewsDBContext dbContext = new SportsNewsDBContext();
-            if (dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password) &&
-                ModelState.IsValid)
+            UnitOfWork unitOfWork = new UnitOfWork();
+            if (unitOfWork.UserRepository.dbContext.Users.ToList().Exists(x => x.Username == user.Username
+            && x.Password == user.Password))
             {
-                System.Web.HttpContext.Current.Session["LoginUser"] = user;
-                Session["UserID"] = user.ID;
                 Session["UserName"] = user.Username;
-                Session["UserAuthorization"] = user.IsAdmin;
                 return RedirectToAction(nameof(Read));
             }
-            else if (!dbContext.Users.ToList().Exists(x => x.Username == user.Username && x.Password == user.Password))
+            else if (!unitOfWork.UserRepository.dbContext.Users.ToList().Exists(x => x.Username == user.Username
+            && x.Password == user.Password))
             {
                 return HttpNotFound();
             }
+            /* TO DO : the code must look something like this (finding a user by his ID, afterwards checking for admin 
+             (should be in an attribute)) -- but you should move the logic outside of the login method*/
+            Users userID = unitOfWork.UserRepository.GetUserByID(1);
+            Session["UserID"] = userID;
+            /*foreach (Users userID in users)
+            {
+                if (users.IsAdmin)
+                {
+
+                }
+            }*/
             return View(user);
         }
+
         public ActionResult Logout()
         {
             Session.Remove("LoginUser");

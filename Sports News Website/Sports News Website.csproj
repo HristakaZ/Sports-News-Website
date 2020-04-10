@@ -145,6 +145,10 @@
     <Compile Include="Migrations\202004041303533_NormalizedDatabase.Designer.cs">
       <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004101215573_ConfiguratingTheDB.cs" />
+    <Compile Include="Migrations\202004101215573_ConfiguratingTheDB.Designer.cs">
+      <DependentUpon>202004101215573_ConfiguratingTheDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Athletes.cs" />
     <Compile Include="Models\Comments.cs" />
@@ -153,7 +157,11 @@
     <Compile Include="Models\SportsNewsDBContext.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\SessionUserRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\SessionUserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -204,7 +212,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\IBase\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -225,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004041303533_NormalizedDatabase.resx">
       <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004101215573_ConfiguratingTheDB.resx">
+      <DependentUpon>202004101215573_ConfiguratingTheDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
