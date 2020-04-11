@@ -10,7 +10,7 @@ namespace Sports_News_Website.Repositories
 {
     public class BaseRepository<T> : Controller, IBaseRepository<T> where T : class, new()
     {
-        readonly SportsNewsDBContext dbContext = new SportsNewsDBContext();
+        public readonly SportsNewsDBContext dbContext = new SportsNewsDBContext();
         [HttpGet]
         public ActionResult Create()
         {
@@ -78,6 +78,15 @@ namespace Sports_News_Website.Repositories
                 return HttpNotFound();
             }
             return View(entity);
+        }
+        public List<T> GetAll()
+        {
+            List<T> entities = dbContext.Set<T>().ToList();
+            return entities;
+        }
+        public T GetByID(int id)
+        {
+            return dbContext.Set<T>().Find(id);
         }
     }
 }
