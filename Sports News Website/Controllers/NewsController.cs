@@ -10,6 +10,7 @@ using Sports_News_Website.Repositories;
 
 namespace Sports_News_Website.Controllers
 {
+    [CustomAuthorizationAndAuthentication(IsAdmin = false)]
     public class NewsController : BaseRepository<News>
     {
         

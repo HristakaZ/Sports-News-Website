@@ -133,7 +133,7 @@
     <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="CustomAttributes\CustomAuthorizationAndAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,7 +161,8 @@
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Services\SessionUserService.cs" />
+    <Compile Include="Services\SessionUserAuthenticationService.cs" />
+    <Compile Include="Services\SessionUserAuthorizationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -204,7 +205,7 @@
     <Content Include="Views\News\Update.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
-    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Users\Read.cshtml" />
     <Content Include="Views\Shared\InsufficientPermission.cshtml" />
   </ItemGroup>

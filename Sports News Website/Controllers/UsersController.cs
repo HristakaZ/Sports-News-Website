@@ -32,21 +32,23 @@ namespace Sports_News_Website.Controllers
         public ActionResult Login(Users user)
         {
             UnitOfWork unitOfWork = new UnitOfWork();
-            if (unitOfWork.UserRepository.dbContext.Users.ToList().Exists(x => x.Username == user.Username
+            if (unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
             && x.Password == user.Password))
             {
-                Session["UserName"] = user.Username;
+                System.Web.HttpContext.Current.Session["UserName"] = user.Username;
+                List<Users> users = unitOfWork.UserRepository.GetAll();
+                Users currentUser = users.Where(x => x.Username == user.Username).FirstOrDefault();
+                System.Web.HttpContext.Current.Session["UserID"] = currentUser.ID;
+                System.Web.HttpContext.Current.Session["UserAuthorization"] = currentUser.IsAdmin;
                 return RedirectToAction(nameof(Read));
             }
-            else if (!unitOfWork.UserRepository.dbContext.Users.ToList().Exists(x => x.Username == user.Username
+            else if (!unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
             && x.Password == user.Password))
             {
                 return HttpNotFound();
             }
             /* TO DO : the code must look something like this (finding a user by his ID, afterwards checking for admin 
-             (should be in an attribute)) -- but you should move the logic outside of the login method*/
-            Users userID = unitOfWork.UserRepository.GetUserByID(1);
-            Session["UserID"] = userID;
+             (should be in an attribute))*/
             /*foreach (Users userID in users)
             {
                 if (users.IsAdmin)
@@ -59,10 +61,9 @@ namespace Sports_News_Website.Controllers
 
         public ActionResult Logout()
         {
-            Session.Remove("LoginUser");
-            Session.Remove("UserID");
-            Session.Remove("UserName");
-            Session.Remove("UserAuthorization");
+            System.Web.HttpContext.Current.Session.Remove("UserID");
+            System.Web.HttpContext.Current.Session.Remove("UserName");
+            System.Web.HttpContext.Current.Session.Remove("UserAuthorization");
             return RedirectToAction(nameof(Read));
         }
     }
