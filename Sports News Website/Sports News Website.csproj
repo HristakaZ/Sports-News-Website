@@ -128,9 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomAttributes\CustomAuthorizationAndAuthenticationAttribute.cs" />
@@ -161,6 +159,7 @@
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\SessionUserAuthenticationService.cs" />
     <Compile Include="Services\SessionUserAuthorizationService.cs" />
   </ItemGroup>

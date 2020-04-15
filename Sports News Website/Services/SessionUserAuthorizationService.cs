@@ -3,31 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.SessionState;
 
 namespace Sports_News_Website.Services
 {
-    public class SessionUserAuthorizationService 
+    public class SessionUserAuthorizationService
     {
-        public int ID { get; set; }
-        public string Username { get; set; }
-        public bool IsAdmin { get; set; }
         public SessionUserAuthorizationService()
         {
-            SetSessionValues();
+            AuthorizationContext filterContext = new AuthorizationContext(); // probably should remove this line
+            SetSessionValues(filterContext);
         }
-        public virtual void SetSessionValues()
+        //make bool variables that have the values of the conditions (for each if make a variable)
+        public void SetSessionValues(AuthorizationContext filterContext)
         {
-            if (this.ID == 0)
+            if (SessionService.ID == 0 && SessionService.Username == null && SessionService.IsAdmin == false)
             {
-                this.ID = (int)System.Web.HttpContext.Current.Session["UserID"];
+                filterContext.Result = new RedirectResult("~/Users/Login");
             }
-            if (this.Username == null)
+            else if (SessionService.ID != 0 && SessionService.Username != null && SessionService.IsAdmin == false)
             {
-                this.Username = (string)System.Web.HttpContext.Current.Session["UserName"];
+                filterContext.Result = new RedirectResult("~/News/Read");
             }
-            if (this.IsAdmin == false)
+            if (SessionService.IsAdmin == false && SessionService.ID != 0 && SessionService.Username != null)
             {
-                this.IsAdmin = (bool)System.Web.HttpContext.Current.Session["UserAuthorization"];
+                filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                return;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using Sports_News_Website.Models;
 using Sports_News_Website.Repositories;
+using Sports_News_Website.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Sports_News_Website.Controllers
         {
             return View();
         }
-
+        //TO DO : move line 41 to line 39 (first get the info from the DB and then set the current user info)
         [HttpPost]
         public ActionResult Login(Users user)
         {
@@ -40,6 +41,9 @@ namespace Sports_News_Website.Controllers
                 Users currentUser = users.Where(x => x.Username == user.Username).FirstOrDefault();
                 System.Web.HttpContext.Current.Session["UserID"] = currentUser.ID;
                 System.Web.HttpContext.Current.Session["UserAuthorization"] = currentUser.IsAdmin;
+                SessionService.ID = (int)System.Web.HttpContext.Current.Session["UserID"];
+                SessionService.Username = (string)System.Web.HttpContext.Current.Session["UserName"];
+                SessionService.IsAdmin = (bool)System.Web.HttpContext.Current.Session["UserAuthorization"];
                 return RedirectToAction(nameof(Read));
             }
             else if (!unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
@@ -61,9 +65,9 @@ namespace Sports_News_Website.Controllers
 
         public ActionResult Logout()
         {
-            System.Web.HttpContext.Current.Session.Remove("UserID");
-            System.Web.HttpContext.Current.Session.Remove("UserName");
-            System.Web.HttpContext.Current.Session.Remove("UserAuthorization");
+            SessionService.ID = 0;
+            SessionService.Username = null;
+            SessionService.IsAdmin = false;
             return RedirectToAction(nameof(Read));
         }
     }
