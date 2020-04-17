@@ -131,7 +131,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="CustomAttributes\CustomAuthorizationAndAuthenticationAttribute.cs" />
+    <Compile Include="CustomAttributes\CustomAuthenticationAttribute.cs" />
+    <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

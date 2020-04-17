@@ -11,17 +11,9 @@ namespace Sports_News_Website.CustomAttributes
 {
     public class CustomAuthorizationAttribute : FilterAttribute, IAuthorizationFilter
     {
-        SessionUserService sessionUserService = new SessionUserService();
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (sessionUserService.IsAdmin)
-            {
-                return;
-            }
-            else if (!sessionUserService.IsAdmin)
-            {
-                filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };
-            }
+            SessionUserAuthorizationService.SetSessionValues(filterContext);
         }
     }
 }

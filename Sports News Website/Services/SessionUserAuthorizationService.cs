@@ -8,25 +8,13 @@ using System.Web.SessionState;
 
 namespace Sports_News_Website.Services
 {
-    public class SessionUserAuthorizationService
+    public static class SessionUserAuthorizationService
     {
-        public SessionUserAuthorizationService()
-        {
-            AuthorizationContext filterContext = new AuthorizationContext(); // probably should remove this line
-            SetSessionValues(filterContext);
-        }
         //make bool variables that have the values of the conditions (for each if make a variable)
-        public void SetSessionValues(AuthorizationContext filterContext)
+        public static void SetSessionValues(AuthorizationContext filterContext)
         {
-            if (SessionService.ID == 0 && SessionService.Username == null && SessionService.IsAdmin == false)
-            {
-                filterContext.Result = new RedirectResult("~/Users/Login");
-            }
-            else if (SessionService.ID != 0 && SessionService.Username != null && SessionService.IsAdmin == false)
-            {
-                filterContext.Result = new RedirectResult("~/News/Read");
-            }
-            if (SessionService.IsAdmin == false && SessionService.ID != 0 && SessionService.Username != null)
+            bool UserIsNotAdmin = SessionService.ID != 0 && SessionService.Username != null && SessionService.IsAdmin == false;
+            if (UserIsNotAdmin)
             {
                 filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };
             }

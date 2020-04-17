@@ -8,6 +8,6 @@ namespace Sports_News_Website.Repositories
 {
     public class UserRepository : BaseRepository<Users>
     {
-        
+
     }
 }

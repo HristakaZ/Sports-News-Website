@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Repositories
 {
-    public interface IBaseRepository<T> : IController 
+    public interface IBaseRepository<T>
     {
+        //TO DO : must edit the repository (add CRUD methods)
         ActionResult Create();
         ActionResult Create(T entity);
         ActionResult Read();
@@ -15,5 +16,7 @@ namespace Sports_News_Website.Repositories
         ActionResult Update(T entity);
         ActionResult Delete(int? id);
         ActionResult Delete(int id);
+        List<T> GetAll();
+        T GetByID(int id);
     }
 }
