@@ -10,16 +10,44 @@ namespace Sports_News_Website.Repositories
     {
         private SportsNewsDBContext dbContext;
         private UserRepository userRepository;
+        private NewsRepository newsRepository;
+        private static UnitOfWork uow;
+        public static UnitOfWork UOW
+        {
+            get
+            {
+                if (uow == null)
+                {
+                    uow = new UnitOfWork();
+                }
+                return uow;
+            }
+        }
         public UserRepository UserRepository
         {
             get
             {
                 if (this.userRepository == null)
                 {
-                    this.userRepository = new UserRepository();
+                    this.userRepository = new UserRepository(dbContext);
                 }
                 return userRepository;
             }
+        }
+        public NewsRepository NewsRepository
+        {
+            get
+            {
+                if (this.newsRepository == null)
+                {
+                    this.newsRepository = new NewsRepository(dbContext);
+                }
+                return newsRepository;
+            }
+        }
+        public void Save()
+        {
+            dbContext.SaveChanges();
         }
         public UnitOfWork()
         {

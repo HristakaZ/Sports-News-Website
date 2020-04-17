@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Sports_News_Website.Repositories
 {
-    public class UserRepository : BaseRepository<Users>
+    public class NewsRepository : BaseRepository<News>
     {
-        public UserRepository(SportsNewsDBContext dbContext) : base(dbContext)
+        public NewsRepository(SportsNewsDBContext dbContext) : base(dbContext)
         {
 
         }

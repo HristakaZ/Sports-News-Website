@@ -9,8 +9,12 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Controllers
 {
-    public class UsersController : BaseRepository<Users>
+    public class UsersController : BaseController<Users>
     {
+        public UsersController() : base(UnitOfWork.UOW.UserRepository)
+        {
+
+        }
         [HttpGet]
         public ActionResult Register()
         {

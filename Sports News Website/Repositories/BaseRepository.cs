@@ -8,76 +8,45 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Repositories
 {
-    public class BaseRepository<T> : Controller, IBaseRepository<T> where T : class, new()
+    public class BaseRepository<T> : IBaseRepository<T> where T : class, new()
     {
-        public readonly SportsNewsDBContext dbContext = new SportsNewsDBContext();
-        [HttpGet]
-        public ActionResult Create()
+        private readonly SportsNewsDBContext dbContext = new SportsNewsDBContext();
+        public BaseRepository(SportsNewsDBContext dbContext)
         {
-            return View();
+            this.dbContext = dbContext;
         }
-        [HttpPost]
-        public ActionResult Create(T entity)
+        public void Create()
         {
-            if (ModelState.IsValid)
-            {
-                dbContext.Entry(entity).State = EntityState.Added;
-                dbContext.SaveChanges();
-                return RedirectToAction(nameof(Read));
-            }
-            return View(entity);
+
         }
-        [HttpGet]
-        public ActionResult Read()
+        public void Create(T entity)
+        {
+            dbContext.Entry(entity).State = EntityState.Added;
+        }
+        public List<T> Read()
         {
             var entities = dbContext.Set<T>().ToList();
-            return View(entities);
+            return entities;
         }
-        [HttpGet]
-        public ActionResult Update(int? id)
+        public T Update(int? id)
         {
             T entity = new T();
             entity = dbContext.Set<T>().Find(id);
-            return View(entity);
+            return entity;
         }
-        [HttpPost]
-        public ActionResult Update(T entity)
+        public void Update(T entity)
         {
-            if (ModelState.IsValid)
-            {
-                dbContext.Entry(entity).State = EntityState.Modified;
-                dbContext.SaveChanges();
-                return RedirectToAction(nameof(Read));
-            }
-            else if (!ModelState.IsValid)
-            {
-                return HttpNotFound();
-            }
-            return View(entity);
+            dbContext.Entry(entity).State = EntityState.Modified;
         }
-        [HttpGet]
-        public ActionResult Delete(int? id)
+        public T Delete(int? id)
         {
             T entity = new T();
             entity = dbContext.Set<T>().Find(id);
-            return View(entity);
+            return entity;
         }
-        [HttpPost]
-        public ActionResult Delete(int id)
+        public void Delete(T entity)
         {
-            T entity = new T();
-            entity = dbContext.Set<T>().Find(id);
-            if (ModelState.IsValid)
-            {
-                dbContext.Entry(entity).State = EntityState.Deleted;
-                dbContext.SaveChanges();
-                return RedirectToAction(nameof(Read));
-            }
-            else if (!ModelState.IsValid)
-            {
-                return HttpNotFound();
-            }
-            return View(entity);
+            dbContext.Entry(entity).State = EntityState.Deleted;
         }
         public List<T> GetAll()
         {
@@ -86,7 +55,9 @@ namespace Sports_News_Website.Repositories
         }
         public T GetByID(int id)
         {
-            return dbContext.Set<T>().Find(id);
+            T entity = new T();
+            entity = dbContext.Set<T>().Find(id);
+            return entity;
         }
     }
 }

@@ -12,8 +12,11 @@ namespace Sports_News_Website.Controllers
 {
     [CustomAuthentication]
     [CustomAuthorization]
-    public class NewsController : BaseRepository<News>
+    public class NewsController : BaseController<News>
     {
+        public NewsController() : base(UnitOfWork.UOW.NewsRepository)
+        {
 
+        }
     }
 }
