@@ -13,7 +13,8 @@ namespace Sports_News_Website.Repositories
         void Create(T entity);
         List<T> Read();
         void Update(T entity);
-        void Delete(T entity);
+        T Delete(int? id);
+        T Delete(int id);
         List<T> GetAll();
         T GetByID(int id);
     }

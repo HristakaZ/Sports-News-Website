@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -28,30 +30,39 @@ namespace Sports_News_Website.Repositories
             var entities = dbContext.Set<T>().ToList();
             return entities;
         }
-        public T Update(int? id)
+        public T Update(int id)
         {
             T entity = new T();
-            entity = dbContext.Set<T>().Find(id);
+            entity = GetByID(id);
             return entity;
         }
         public void Update(T entity)
         {
-            dbContext.Entry(entity).State = EntityState.Modified;
+            //Debugger.Log(0, "state", dbContext.Entry(entity).State.ToString());
+            dbContext.Set<T>().AddOrUpdate(entity);
         }
         public T Delete(int? id)
         {
             T entity = new T();
-            entity = dbContext.Set<T>().Find(id);
+            entity = GetByID(id);
             return entity;
         }
-        public void Delete(T entity)
+        public T Delete(int id)
         {
-            dbContext.Entry(entity).State = EntityState.Deleted;
+            T entity = GetByID(id);
+            entity = dbContext.Set<T>().Remove(entity);
+            return entity;
         }
         public List<T> GetAll()
         {
             List<T> entities = dbContext.Set<T>().ToList();
             return entities;
+        }
+        public T GetByID(int? id)
+        {
+            T entity = new T();
+            entity = dbContext.Set<T>().Find(id);
+            return entity;
         }
         public T GetByID(int id)
         {

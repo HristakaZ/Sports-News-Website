@@ -52,21 +52,21 @@ namespace Sports_News_Website.Controllers
         {
             baseRepository.Update(entity);
             UnitOfWork.UOW.Save();
-            return View();
+            return RedirectToAction(nameof(Read));
         }
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             T entity = new T();
             entity = baseRepository.Delete(id);
             return View(entity);
         }
         [HttpPost]
-        public ActionResult Delete(T entity)
+        public ActionResult Delete(int id)
         {
-            baseRepository.Delete(entity);
+            T entity = baseRepository.Delete(id);
             UnitOfWork.UOW.Save();
-            return View();
+            return RedirectToAction(nameof(Read));
         }
     }
 }
