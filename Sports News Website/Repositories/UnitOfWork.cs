@@ -11,6 +11,9 @@ namespace Sports_News_Website.Repositories
         private SportsNewsDBContext dbContext;
         private UserRepository userRepository;
         private NewsRepository newsRepository;
+        private SportRepository sportRepository;
+        private AthleteRepository athleteRepository;
+        private CommentRepository commentRepository;
         private static UnitOfWork uow;
         public static UnitOfWork UOW
         {
@@ -23,6 +26,7 @@ namespace Sports_News_Website.Repositories
                 return uow;
             }
         }
+
         public UserRepository UserRepository
         {
             get
@@ -34,6 +38,7 @@ namespace Sports_News_Website.Repositories
                 return userRepository;
             }
         }
+
         public NewsRepository NewsRepository
         {
             get
@@ -43,6 +48,42 @@ namespace Sports_News_Website.Repositories
                     this.newsRepository = new NewsRepository(dbContext);
                 }
                 return newsRepository;
+            }
+        }
+
+        public SportRepository SportRepository
+        {
+            get
+            {
+                if (this.sportRepository == null)
+                {
+                    this.sportRepository = new SportRepository(dbContext);
+                }
+                return sportRepository;
+            }
+        }
+
+        public AthleteRepository AthleteRepository
+        {
+            get
+            {
+                if (this.athleteRepository == null)
+                {
+                    this.athleteRepository= new AthleteRepository(dbContext);
+                }
+                return athleteRepository;
+            }
+        }
+
+        public CommentRepository CommentRepository
+        {
+            get
+            {
+                if (this.commentRepository == null)
+                {
+                    this.commentRepository = new CommentRepository(dbContext);
+                }
+                return commentRepository;
             }
         }
         public void Save()
