@@ -258,6 +258,7 @@ C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Spo
 C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports News Website.csproj.CopyComplete
 C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports News Website.dll
 C:\Users\User\source\repos\Sports News Website\Sports News Website\obj\Debug\Sports News Website.pdb
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Antlr3.Runtime.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Sports News Website.dll.config
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Sports News Website.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Sports News Website.pdb
@@ -310,7 +311,8 @@ C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\rosly
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\roslyn\vbc.rsp
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\roslyn\VBCSCompiler.exe
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Antlr3.Runtime.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\DataAccess.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\DataStructure.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\EntityFramework.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\EntityFramework.SqlServer.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -324,6 +326,9 @@ C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Syste
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Web.WebPages.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Web.WebPages.Razor.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\WebGrease.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\DataAccess.pdb
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\DataAccess.dll.config
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\DataStructure.pdb
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\EntityFramework.xml
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\EntityFramework.SqlServer.xml
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Web.Helpers.xml
@@ -336,12 +341,8 @@ C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Syste
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Newtonsoft.Json.xml
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Antlr3.Runtime.pdb
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports_News_Website.Migrations.CreatingTheDB.resources
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports_News_Website.Migrations.NormalizedDatabase.resources
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports_News_Website.Migrations.ConfiguratingTheDB.resources
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csproj.GenerateResource.cache
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csprojAssemblyReference.cache
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csproj.CoreCompileInputs.cache
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.pdb
-C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csprojAssemblyReference.cache

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Sports_News_Website.Models.Comments>
+﻿@model IEnumerable<DataStructure.Comments>
 
 @{
-    ViewBag.Title = "Comments";
+    ViewBag.Title = "Read";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Read</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -17,17 +17,17 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.ActionLink("Update", "Update", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
 
 </table>

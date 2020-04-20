@@ -1,6 +1,6 @@
-﻿using Sports_News_Website.CustomAttributes;
-using Sports_News_Website.Models;
-using Sports_News_Website.Repositories;
+﻿using DataAccess.Repositories;
+using DataStructure;
+using Sports_News_Website.CustomAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +16,41 @@ namespace Sports_News_Website.Controllers
         public SportController() : base(UnitOfWork.UOW.SportRepository)
         {
 
+        }
+        [HttpGet]
+        public new ActionResult Create()
+        {
+            return base.Create();
+        }
+        [HttpPost]
+        public new ActionResult Create(Sports sport)
+        {
+            return base.Create(sport);
+        }
+        [HttpGet]
+        public new ActionResult Read()
+        {
+            return base.Read();
+        }
+        [HttpGet]
+        public new ActionResult Update(int id)
+        {
+            return base.Update(id);
+        }
+        [HttpPost]
+        public new ActionResult Update(Sports sport)
+        {
+            return base.Update(sport);
+        }
+        [HttpGet]
+        public new ActionResult Delete(int? id)
+        {
+            return base.Delete(id);
+        }
+        [HttpPost]
+        public new ActionResult Delete(int id)
+        {
+            return base.Delete(id);
         }
     }
 }

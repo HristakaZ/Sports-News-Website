@@ -140,34 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003312041074_CreatingTheDB.cs" />
-    <Compile Include="Migrations\202003312041074_CreatingTheDB.Designer.cs">
-      <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004041303533_NormalizedDatabase.cs" />
-    <Compile Include="Migrations\202004041303533_NormalizedDatabase.Designer.cs">
-      <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004101215573_ConfiguratingTheDB.cs" />
-    <Compile Include="Migrations\202004101215573_ConfiguratingTheDB.Designer.cs">
-      <DependentUpon>202004101215573_ConfiguratingTheDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Athletes.cs" />
-    <Compile Include="Models\Comments.cs" />
-    <Compile Include="Models\News.cs" />
-    <Compile Include="Models\Sports.cs" />
-    <Compile Include="Models\SportsNewsDBContext.cs" />
-    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AthleteRepository.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\CommentRepository.cs" />
-    <Compile Include="Repositories\IBaseRepository.cs" />
-    <Compile Include="Repositories\NewsRepository.cs" />
-    <Compile Include="Repositories\SportRepository.cs" />
-    <Compile Include="Repositories\UnitOfWork.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\SessionUserAuthenticationService.cs" />
     <Compile Include="Services\SessionUserAuthorizationService.cs" />
@@ -213,7 +186,7 @@
     <Content Include="Views\News\Update.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
-    <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\Read.cshtml" />
     <Content Include="Views\Shared\InsufficientPermission.cshtml" />
     <Content Include="Views\Sport\Create.cshtml" />
@@ -228,6 +201,8 @@
     <Content Include="Views\Comment\Read.cshtml" />
     <Content Include="Views\Comment\Update.cshtml" />
     <Content Include="Views\Comment\Delete.cshtml" />
+    <Content Include="Views\Users\Update.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,15 +223,14 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003312041074_CreatingTheDB.resx">
-      <DependentUpon>202003312041074_CreatingTheDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004041303533_NormalizedDatabase.resx">
-      <DependentUpon>202004041303533_NormalizedDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101215573_ConfiguratingTheDB.resx">
-      <DependentUpon>202004101215573_ConfiguratingTheDB.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{8937BA3C-866C-49CD-A941-E6319B5E9DA0}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+      <Project>{38301386-8810-43F5-9D5C-641B958040B3}</Project>
+      <Name>DataStructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

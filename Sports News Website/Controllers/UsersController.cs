@@ -1,5 +1,5 @@
-﻿using Sports_News_Website.Models;
-using Sports_News_Website.Repositories;
+﻿using DataAccess.Repositories;
+using DataStructure;
 using Sports_News_Website.Services;
 using System;
 using System.Collections.Generic;
@@ -25,6 +25,36 @@ namespace Sports_News_Website.Controllers
         public ActionResult Register(Users user)
         {
             return base.Create(user);
+        }
+
+        [HttpGet]
+        public new ActionResult Read()
+        {
+            return base.Read();
+        }
+
+        [HttpGet]
+        public new ActionResult Update(int id)
+        {
+            return base.Update(id);
+        }
+
+        [HttpPost]
+        public new ActionResult Update(Users user)
+        {
+            return base.Update(user);
+        }
+
+        [HttpGet]
+        public new ActionResult Delete(int? id)
+        {
+            return base.Delete(id);
+        }
+
+        [HttpPost]
+        public new ActionResult Delete(int id)
+        {
+            return base.Delete(id);
         }
 
         [HttpGet]
