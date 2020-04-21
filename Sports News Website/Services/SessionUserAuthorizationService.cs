@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sports_News_Website.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,7 +14,7 @@ namespace Sports_News_Website.Services
         //make bool variables that have the values of the conditions (for each if make a variable)
         public static void SetSessionValues(AuthorizationContext filterContext)
         {
-            bool UserIsNotAdmin = SessionService.ID != 0 && SessionService.Username != null && SessionService.IsAdmin == false;
+            bool UserIsNotAdmin = SessionDTO.ID != 0 && SessionDTO.Username != null && SessionDTO.IsAdmin == false;
             if (UserIsNotAdmin)
             {
                 filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };

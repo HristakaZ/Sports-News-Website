@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sports_News_Website.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,7 @@ namespace Sports_News_Website.Services
     {
         public static void SetSessionValues(AuthorizationContext filterContext)
         {
-            bool UserIsNotAuthenticated = SessionService.ID == 0 && SessionService.Username == null && SessionService.IsAdmin == false;
+            bool UserIsNotAuthenticated = SessionDTO.ID == 0 && SessionDTO.Username == null && SessionDTO.IsAdmin == false;
             if (UserIsNotAuthenticated)
             {
                 filterContext.Result = new RedirectResult("~/Users/Login");

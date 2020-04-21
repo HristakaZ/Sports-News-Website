@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DataAccess.Repositories;
 using DataStructure;
 using Sports_News_Website.CustomAttributes;
+using Sports_News_Website.Services;
 
 namespace Sports_News_Website.Controllers
 {

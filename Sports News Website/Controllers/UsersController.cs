@@ -1,5 +1,6 @@
 ﻿using DataAccess.Repositories;
 using DataStructure;
+using Sports_News_Website.DTOs;
 using Sports_News_Website.Services;
 using System;
 using System.Collections.Generic;
@@ -62,7 +63,7 @@ namespace Sports_News_Website.Controllers
         {
             return View();
         }
-        //TO DO : move line 41 to line 39 (first get the info from the DB and then set the current user info)
+
         [HttpPost]
         public ActionResult Login(Users user)
         {
@@ -70,14 +71,7 @@ namespace Sports_News_Website.Controllers
             if (unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
             && x.Password == user.Password))
             {
-                System.Web.HttpContext.Current.Session["UserName"] = user.Username;
-                List<Users> users = unitOfWork.UserRepository.GetAll();
-                Users currentUser = users.Where(x => x.Username == user.Username).FirstOrDefault();
-                System.Web.HttpContext.Current.Session["UserID"] = currentUser.ID;
-                System.Web.HttpContext.Current.Session["UserAuthorization"] = currentUser.IsAdmin;
-                SessionService.ID = (int)System.Web.HttpContext.Current.Session["UserID"];
-                SessionService.Username = (string)System.Web.HttpContext.Current.Session["UserName"];
-                SessionService.IsAdmin = (bool)System.Web.HttpContext.Current.Session["UserAuthorization"];
+                LoginService.Login(user);
                 return RedirectToAction(nameof(Read));
             }
             else if (!unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
@@ -85,23 +79,12 @@ namespace Sports_News_Website.Controllers
             {
                 return HttpNotFound();
             }
-            /* TO DO : the code must look something like this (finding a user by his ID, afterwards checking for admin 
-             (should be in an attribute))*/
-            /*foreach (Users userID in users)
-            {
-                if (users.IsAdmin)
-                {
-
-                }
-            }*/
             return View(user);
         }
 
         public ActionResult Logout()
         {
-            SessionService.ID = 0;
-            SessionService.Username = null;
-            SessionService.IsAdmin = false;
+            LogoutService.Logout();
             return RedirectToAction(nameof(Read));
         }
     }

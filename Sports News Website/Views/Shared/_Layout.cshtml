@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @using Sports_News_Website.Services
+    @using Sports_News_Website.DTOs
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>Hello, @SessionService.Username, @SessionService.ID, You have Admin privileges : @SessionService.IsAdmin</li>
+                    <li>Hello, @SessionDTO.Username, @SessionDTO.ID, You have Admin privileges : @SessionDTO.IsAdmin</li>
                     <li>@Html.ActionLink("Login", "Login", "Users")</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
                     <li>@Html.ActionLink("News", "Read", "News")</li>

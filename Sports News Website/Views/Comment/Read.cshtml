@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DataStructure.Comments>
 
 @{
-    ViewBag.Title = "Read";
+    ViewBag.Title = "Comments";
 }
 
-<h2>Read</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,8 +23,7 @@
             @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Update", "Update", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>

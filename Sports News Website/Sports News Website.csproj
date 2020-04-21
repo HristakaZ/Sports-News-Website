@@ -137,11 +137,13 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomAttributes\CustomAuthenticationAttribute.cs" />
     <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="DTOs\SessionDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\SessionService.cs" />
+    <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\LogoutService.cs" />
     <Compile Include="Services\SessionUserAuthenticationService.cs" />
     <Compile Include="Services\SessionUserAuthorizationService.cs" />
   </ItemGroup>
