@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Photo\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\IBase\" />
   </ItemGroup>
