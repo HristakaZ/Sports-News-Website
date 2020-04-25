@@ -346,3 +346,19 @@ C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.dll
 C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\obj\Debug\Sports News Website.pdb
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.Extensions.Primitives.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Buffers.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.IO.Pipelines.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Memory.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Numerics.Vectors.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Buffers.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.IO.Pipelines.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Memory.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Numerics.Vectors.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\User\Documents\GitHub\Sports-News-Website\Sports News Website\bin\System.Threading.Tasks.Extensions.xml

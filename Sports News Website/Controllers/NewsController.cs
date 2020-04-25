@@ -9,6 +9,7 @@ using DataAccess.Repositories;
 using DataStructure;
 using Sports_News_Website.CustomAttributes;
 using Sports_News_Website.Services;
+using Sports_News_Website.ViewModels;
 using static System.Net.WebRequestMethods;
 
 namespace Sports_News_Website.Controllers
@@ -26,13 +27,20 @@ namespace Sports_News_Website.Controllers
         {
             return base.Create();
         }
-        [HttpPost]
-        public new ActionResult Create(News news)
+        [HttpPost] 
+        public ActionResult Create(NewsViewModel newsViewModel)
         {
-            string fileName = Path.GetFileName(news.Photo); // the photo that is uploaded
+            string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
             string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
             string targetPath = Path.Combine(targetFolder, fileName); // the path that needs to be saved into the db
-            news.Photo = targetPath;
+            newsViewModel.Photo.SaveAs(targetPath); // saving the photo
+            News news = new News
+            {
+                ID = newsViewModel.ID,
+                Title = newsViewModel.Title,
+                Content = newsViewModel.Content,
+                Photo = fileName
+            };
             return base.Create(news);
         }
         [HttpGet]

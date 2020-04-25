@@ -36,7 +36,6 @@ namespace DataAccess.Repositories
         }
         public void Update(T entity)
         {
-            //Debugger.Log(0, "state", dbContext.Entry(entity).State.ToString());
             dbContext.Set<T>().AddOrUpdate(entity);
         }
         public T Delete(int? id)
