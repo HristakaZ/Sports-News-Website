@@ -49,6 +49,12 @@ namespace Sports_News_Website.Controllers
             return base.Read();
         }
         [HttpGet]
+        public new ActionResult Details(int id)
+        {
+            News news = GetByID(id);
+            return View(news);
+        }
+        [HttpGet]
         public new ActionResult Update(int id)
         {
             return base.Update(id);

@@ -209,10 +209,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\News\Create.cshtml" />
-    <Content Include="Views\News\Read.cshtml" />
-    <Content Include="Views\News\Update.cshtml" />
-    <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\Read.cshtml" />
@@ -231,6 +227,11 @@
     <Content Include="Views\Comment\Delete.cshtml" />
     <Content Include="Views\Users\Update.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Read.cshtml" />
+    <Content Include="Views\News\Update.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

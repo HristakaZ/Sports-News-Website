@@ -12,5 +12,7 @@ namespace DataStructure
         public string Title { get; set; }
         public string Content { get; set; }
         public string Photo { get; set; }
+        public Users User { get; set; }
+        public List<Comments> Comments { get; set; }
     }
 }

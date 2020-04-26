@@ -54,6 +54,10 @@
     <Compile Include="Migrations\202004202020328_CreatingTheDatabase.Designer.cs">
       <DependentUpon>202004202020328_CreatingTheDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004261241100_ConnectionsBetweenModels.cs" />
+    <Compile Include="Migrations\202004261241100_ConnectionsBetweenModels.Designer.cs">
+      <DependentUpon>202004261241100_ConnectionsBetweenModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\AthleteRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004202020328_CreatingTheDatabase.resx">
       <DependentUpon>202004202020328_CreatingTheDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004261241100_ConnectionsBetweenModels.resx">
+      <DependentUpon>202004261241100_ConnectionsBetweenModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

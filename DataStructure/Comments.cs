@@ -10,5 +10,7 @@ namespace DataStructure
     {
         public int ID { get; set; }
         public string Content { get; set; }
+        public Users User { get; set; }
+        public News News { get; set; }
     }
 }

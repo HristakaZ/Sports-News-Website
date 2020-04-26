@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<DataStructure.News>
 
 @{
-    ViewBag.Title = "News";
+    ViewBag.Title = "Read";
 }
 
 <h2>News</h2>
@@ -32,10 +32,11 @@
             @Html.DisplayFor(modelItem => item.Content)
         </td>
         <td>
-            <img src="~/Photo/@item.Photo" alt="Alternate Text" height="40%" width="40%" /> 
+            <img src="~/Photo/@item.Photo" alt = "Alternate Text" height = "40" width = "40" />
         </td>
         <td>
             @Html.ActionLink("Update", "Update", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
