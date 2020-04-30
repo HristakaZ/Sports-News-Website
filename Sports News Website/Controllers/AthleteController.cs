@@ -1,6 +1,8 @@
 ﻿using DataAccess.Repositories;
 using DataStructure;
 using Sports_News_Website.CustomAttributes;
+using Sports_News_Website.DTOs;
+using Sports_News_Website.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +22,28 @@ namespace Sports_News_Website.Controllers
         [HttpGet]
         public new ActionResult Create()
         {
+            // MUST FIX THE FRONT-END !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+            /*List<SelectListItem> sportsList = new List<SelectListItem>();
+            foreach (Sports sport in allSports)
+            {
+                sportsList.Add(new SelectListItem() { Text = sport.Name, Value = sport.Name });
+            }*/
+            SelectList selectListItems = new SelectList(allSports, "ID", "Name");
+            ViewData["SportsList"] = selectListItems;
             return base.Create();
         }
         [HttpPost]
-        public new ActionResult Create(Athletes athlete)
+        public new ActionResult Create(AthleteViewModel athleteViewModel)
         {
+            List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+            Sports currentSport = allSports.Where(x => x.ID == athleteViewModel.Sport).FirstOrDefault();
+            Athletes athlete = new Athletes
+            {
+                ID = athleteViewModel.ID,
+                Name = athleteViewModel.Name,
+                Sport = currentSport
+            };
             return base.Create(athlete);
         }
         [HttpGet]

@@ -13,6 +13,6 @@ namespace DataStructure
         public string Content { get; set; }
         public string Photo { get; set; }
         public Users User { get; set; }
-        public List<Comments> Comments { get; set; }
+        public virtual List<Comments> Comments { get; set; }
     }
 }

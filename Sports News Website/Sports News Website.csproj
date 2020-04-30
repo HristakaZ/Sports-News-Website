@@ -162,6 +162,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomAttributes\CustomAuthenticationAttribute.cs" />
     <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="DTOs\NewsDTO.cs" />
     <Compile Include="DTOs\SessionDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -171,6 +172,7 @@
     <Compile Include="Services\LogoutService.cs" />
     <Compile Include="Services\SessionUserAuthenticationService.cs" />
     <Compile Include="Services\SessionUserAuthorizationService.cs" />
+    <Compile Include="ViewModels\AthleteViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,7 +219,6 @@
     <Content Include="Views\Sport\Read.cshtml" />
     <Content Include="Views\Sport\Update.cshtml" />
     <Content Include="Views\Sport\Delete.cshtml" />
-    <Content Include="Views\Athlete\Create.cshtml" />
     <Content Include="Views\Athlete\Read.cshtml" />
     <Content Include="Views\Athlete\Update.cshtml" />
     <Content Include="Views\Athlete\Delete.cshtml" />
@@ -232,6 +233,7 @@
     <Content Include="Views\News\Update.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\Athlete\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

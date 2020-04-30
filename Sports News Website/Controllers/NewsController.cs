@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using DataAccess.Repositories;
 using DataStructure;
 using Sports_News_Website.CustomAttributes;
+using Sports_News_Website.DTOs;
 using Sports_News_Website.Services;
 using Sports_News_Website.ViewModels;
 using static System.Net.WebRequestMethods;
@@ -32,7 +33,7 @@ namespace Sports_News_Website.Controllers
         {
             string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
             string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
-            string targetPath = Path.Combine(targetFolder, fileName); // the path that needs to be saved into the db
+            string targetPath = Path.Combine(targetFolder, fileName); // the whole path
             newsViewModel.Photo.SaveAs(targetPath); // saving the photo
             News news = new News
             {
@@ -41,6 +42,9 @@ namespace Sports_News_Website.Controllers
                 Content = newsViewModel.Content,
                 Photo = fileName
             };
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            Users currentUser = allUsers.Where(x => x.ID == SessionDTO.ID).FirstOrDefault();
+            news.User = currentUser;
             return base.Create(news);
         }
         [HttpGet]
@@ -51,8 +55,13 @@ namespace Sports_News_Website.Controllers
         [HttpGet]
         public new ActionResult Details(int id)
         {
-            News news = GetByID(id);
-            return View(news);
+            News currentNews = UnitOfWork.UOW.NewsRepository.GetByID(id);
+            var tupleModel = new Tuple<News, List<Comments>>(currentNews,
+                currentNews.Comments/*UnitOfWork.UOW.CommentRepository.GetAll()*/); //change getall to getbyid(id)
+            
+            System.Web.HttpContext.Current.Session["CurrentNewsID"] = currentNews.ID;
+            NewsDTO.NewsID = currentNews.ID;
+            return View(tupleModel);
         }
         [HttpGet]
         public new ActionResult Update(int id)

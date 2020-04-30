@@ -58,6 +58,10 @@
     <Compile Include="Migrations\202004261241100_ConnectionsBetweenModels.Designer.cs">
       <DependentUpon>202004261241100_ConnectionsBetweenModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.cs" />
+    <Compile Include="Migrations\202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.Designer.cs">
+      <DependentUpon>202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\AthleteRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -86,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004261241100_ConnectionsBetweenModels.resx">
       <DependentUpon>202004261241100_ConnectionsBetweenModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.resx">
+      <DependentUpon>202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

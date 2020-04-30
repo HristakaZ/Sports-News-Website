@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repositories;
 using DataStructure;
 using Sports_News_Website.CustomAttributes;
+using Sports_News_Website.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,12 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Create(Comments comment)
         {
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            Users currentUser = allUsers.Where(x => x.ID == SessionDTO.ID).FirstOrDefault();
+            comment.User = currentUser;
+            List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+            News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
+            comment.News = currentNews;
             return base.Create(comment);
         }
         [HttpGet]

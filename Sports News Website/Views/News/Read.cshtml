@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Photo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
         <th></th>
     </tr>
 
@@ -33,6 +36,9 @@
         </td>
         <td>
             <img src="~/Photo/@item.Photo" alt = "Alternate Text" height = "40" width = "40" />
+        </td>
+        <td>
+            News made by : @Html.DisplayFor(modelItem => item.User.Username)
         </td>
         <td>
             @Html.ActionLink("Update", "Update", new { id=item.ID }) |

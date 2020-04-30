@@ -55,6 +55,7 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Delete(int id)
         {
+            LogoutService.Logout();
             return base.Delete(id);
         }
 
