@@ -22,13 +22,7 @@ namespace Sports_News_Website.Controllers
         [HttpGet]
         public new ActionResult Create()
         {
-            // MUST FIX THE FRONT-END !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
-            /*List<SelectListItem> sportsList = new List<SelectListItem>();
-            foreach (Sports sport in allSports)
-            {
-                sportsList.Add(new SelectListItem() { Text = sport.Name, Value = sport.Name });
-            }*/
             SelectList selectListItems = new SelectList(allSports, "ID", "Name");
             ViewData["SportsList"] = selectListItems;
             return base.Create();

@@ -10,6 +10,6 @@ namespace DataStructure
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Athletes> Athletes { get; set; }
+        public virtual List<Athletes> Athletes { get; set; }
     }
 }

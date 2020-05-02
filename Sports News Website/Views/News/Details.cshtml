@@ -1,5 +1,5 @@
-﻿@model Tuple<DataStructure.News, List<DataStructure.Comments>>
-
+﻿@using DataStructure;
+@model Tuple<News, List<Comments>>
 @{
     ViewBag.Title = "Details";
 }
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @foreach (DataStructure.Comments comment in Model.Item2)
+            @foreach (Comments comment in Model.Item2)
             {
             <dd>
                 <p>@comment.User.Username</p>
@@ -47,10 +47,35 @@
             <dd>
                 <p>@comment.Content</p>
             </dd>
-            }
+        }
 
         </dl>
     </div>
+
+
+    @using (Html.BeginForm("Create", "Comment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <h4>Comments</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.LabelFor(model => new Comments { }.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => new Comments { }.Content, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => new Comments { }.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
 
     <br />
     <br />

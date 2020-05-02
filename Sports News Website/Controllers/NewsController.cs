@@ -28,7 +28,7 @@ namespace Sports_News_Website.Controllers
         {
             return base.Create();
         }
-        [HttpPost] 
+        [HttpPost]
         public ActionResult Create(NewsViewModel newsViewModel)
         {
             string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
@@ -57,8 +57,7 @@ namespace Sports_News_Website.Controllers
         {
             News currentNews = UnitOfWork.UOW.NewsRepository.GetByID(id);
             var tupleModel = new Tuple<News, List<Comments>>(currentNews,
-                currentNews.Comments/*UnitOfWork.UOW.CommentRepository.GetAll()*/); //change getall to getbyid(id)
-            
+                currentNews.Comments);
             System.Web.HttpContext.Current.Session["CurrentNewsID"] = currentNews.ID;
             NewsDTO.NewsID = currentNews.ID;
             return View(tupleModel);
