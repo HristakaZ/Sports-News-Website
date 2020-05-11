@@ -4,6 +4,7 @@ using Sports_News_Website.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace Sports_News_Website.Services
@@ -12,9 +13,8 @@ namespace Sports_News_Website.Services
     {
         public static void Login(Users user)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
             System.Web.HttpContext.Current.Session["UserName"] = user.Username;
-            List<Users> users = unitOfWork.UserRepository.GetAll();
+            List<Users> users = UnitOfWork.UOW.UserRepository.GetAll();
             Users currentUser = users.Where(x => x.Username == user.Username).FirstOrDefault();
             System.Web.HttpContext.Current.Session["UserID"] = currentUser.ID;
             System.Web.HttpContext.Current.Session["UserAuthorization"] = currentUser.IsAdmin;

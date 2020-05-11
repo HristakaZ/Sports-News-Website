@@ -25,6 +25,9 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public ActionResult Register(Users user)
         {
+            string salt = "sheldonthemightylittlegeniusman";
+            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+            user.Password = hashedPassword;
             return base.Create(user);
         }
 
@@ -43,6 +46,9 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Update(Users user)
         {
+            string salt = "sheldonthemightylittlegeniusman";
+            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+            user.Password = hashedPassword;
             return base.Update(user);
         }
 
@@ -55,7 +61,6 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Delete(int id)
         {
-            LogoutService.Logout();
             return base.Delete(id);
         }
 
@@ -68,15 +73,16 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public ActionResult Login(Users user)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            if (unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
-            && x.Password == user.Password))
+            string salt = "sheldonthemightylittlegeniusman";
+            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+            if (UnitOfWork.UOW.UserRepository.GetAll().Exists(x => x.Username == user.Username
+            && x.Password == hashedPassword))
             {
                 LoginService.Login(user);
                 return RedirectToAction(nameof(Read));
             }
-            else if (!unitOfWork.UserRepository.GetAll().ToList().Exists(x => x.Username == user.Username
-            && x.Password == user.Password))
+            else if (UnitOfWork.UOW.UserRepository.GetAll().Exists(x => x.Username == user.Username
+            && x.Password == hashedPassword))
             {
                 return HttpNotFound();
             }
