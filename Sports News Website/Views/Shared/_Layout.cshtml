@@ -30,6 +30,7 @@
                     @if (SessionDTO.ID == 0)
                     {
                         <li>@Html.ActionLink("Login", "Login", "Users")</li>
+                        <li>@Html.ActionLink("Register", "Register")</li>
                     }
                     @if (SessionDTO.ID != 0)
                     {

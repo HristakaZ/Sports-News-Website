@@ -40,28 +40,68 @@ namespace Sports_News_Website.Controllers
         [HttpGet]
         public new ActionResult Update(int id)
         {
-            return base.Update(id);
+            Users user = new Users();
+            user = GetByID(id);
+            if (user.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                return base.Update(id);
+            }
         }
 
         [HttpPost]
         public new ActionResult Update(Users user)
         {
-            string salt = "sheldonthemightylittlegeniusman";
-            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
-            user.Password = hashedPassword;
-            return base.Update(user);
+            if (user.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else if (user.Password != null)
+            {
+                {
+                    string salt = "sheldonthemightylittlegeniusman";
+                    string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+                    user.Password = hashedPassword;
+                    return base.Update(user);
+                }
+            }
+            else
+            {
+                return View(user);
+            }
         }
 
         [HttpGet]
         public new ActionResult Delete(int? id)
         {
-            return base.Delete(id);
+            Users user = new Users();
+            user = GetByID(id);
+            if (user.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else 
+            {
+                return base.Delete(id);
+            }
         }
 
         [HttpPost]
         public new ActionResult Delete(int id)
         {
-            return base.Delete(id);
+            Users user = new Users();
+            user = GetByID(id);
+            if (user.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                return base.Delete(id);
+            }
         }
 
         [HttpGet]

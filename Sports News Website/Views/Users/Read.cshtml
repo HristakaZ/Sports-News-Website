@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<DataStructure.Users>
+@using Sports_News_Website.DTOs;
 
 @{
     ViewBag.Title = "Users";
@@ -6,39 +7,43 @@
 
 <h2>Users</h2>
 
-<p>
-    @Html.ActionLink("Register", "Register")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Username)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
+        @if (SessionDTO.IsAdmin == true)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.IsAdmin)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAdmin)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "Update", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            @if (SessionDTO.IsAdmin == true)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            <td>
+                @Html.ActionLink("Update", "Update", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>

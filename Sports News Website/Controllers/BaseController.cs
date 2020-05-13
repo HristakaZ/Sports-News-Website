@@ -40,6 +40,13 @@ namespace Sports_News_Website.Controllers
             return entity;
         }
         [HttpGet]
+        protected T GetByID(int? id)
+        {
+            T entity = new T();
+            entity = baseRepository.GetByID(id);
+            return entity;
+        }
+        [HttpGet]
         protected ActionResult Update(int id)
         {
             T entity = new T();

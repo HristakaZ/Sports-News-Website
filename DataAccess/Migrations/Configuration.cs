@@ -1,9 +1,12 @@
 namespace DataAccess.Migrations
 {
+    using DataStructure;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Security.Cryptography.X509Certificates;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataAccess.SportsNewsDBContext>
     {
@@ -18,6 +21,9 @@ namespace DataAccess.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+            context.Users.AddOrUpdate(user => user.ID,
+                new Users { Username = "Admin", Password = "E1in7wL/u5GNCEMifhfLgAfiLh2QR/CbzJxJKPWswoI=sheldonthemightylittlegeniusman", IsAdmin = true}, // password = "Admin"
+                new Users { Username = "pesho", Password = "MVCptP4ePS4HT264T2i2xvqjqnXYffCJbr2cebtaqxE=sheldonthemightylittlegeniusman", IsAdmin = false}); // password = "pesho" 
         }
     }
 }
