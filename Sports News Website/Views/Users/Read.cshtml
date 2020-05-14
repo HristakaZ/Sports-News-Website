@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<DataStructure.Users>
 @using Sports_News_Website.DTOs;
+@using DataAccess.Repositories;
+@using DataStructure;
 
 @{
     ViewBag.Title = "Users";
@@ -39,10 +41,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsAdmin)
             </td>
-            <td>
-                @Html.ActionLink("Update", "Update", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            @if (SessionDTO.ID == item.ID && SessionDTO.IsAdmin == false)
+            {
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            }
+
+            else if (SessionDTO.IsAdmin == true)
+            {
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            }
         </tr>
     }
 

@@ -175,6 +175,7 @@
     <Compile Include="Services\SessionUserAuthorizationService.cs" />
     <Compile Include="ViewModels\AthleteViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

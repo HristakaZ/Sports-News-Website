@@ -2,6 +2,7 @@
 using DataStructure;
 using Sports_News_Website.DTOs;
 using Sports_News_Website.Services;
+using Sports_News_Website.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Sports_News_Website.Controllers
             string salt = "sheldonthemightylittlegeniusman";
             string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
             user.Password = hashedPassword;
+            user.IsAdmin = false;
             return base.Create(user);
         }
 
@@ -59,19 +61,14 @@ namespace Sports_News_Website.Controllers
             {
                 return new ViewResult { ViewName = "InsufficientPermission" };
             }
-            else if (user.Password != null)
+            else if (SessionDTO.IsAdmin == false)
             {
-                {
-                    string salt = "sheldonthemightylittlegeniusman";
-                    string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
-                    user.Password = hashedPassword;
-                    return base.Update(user);
-                }
+                user.IsAdmin = false;
             }
-            else
-            {
-                return View(user);
-            }
+            string salt = "sheldonthemightylittlegeniusman";
+            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+            user.Password = hashedPassword;
+            return base.Update(user);
         }
 
         [HttpGet]
@@ -83,7 +80,7 @@ namespace Sports_News_Website.Controllers
             {
                 return new ViewResult { ViewName = "InsufficientPermission" };
             }
-            else 
+            else
             {
                 return base.Delete(id);
             }
