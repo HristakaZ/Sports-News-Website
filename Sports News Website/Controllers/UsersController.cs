@@ -26,11 +26,15 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public ActionResult Register(Users user)
         {
-            string salt = "sheldonthemightylittlegeniusman";
-            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
-            user.Password = hashedPassword;
-            user.IsAdmin = false;
-            return base.Create(user);
+            if (ModelState.IsValid)
+            {
+                string salt = "sheldonthemightylittlegeniusman";
+                string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+                user.Password = hashedPassword;
+                user.IsAdmin = false;
+                return base.Create(user);
+            }
+            return View(user);
         }
 
         [HttpGet]
@@ -65,10 +69,14 @@ namespace Sports_News_Website.Controllers
             {
                 user.IsAdmin = false;
             }
-            string salt = "sheldonthemightylittlegeniusman";
-            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
-            user.Password = hashedPassword;
-            return base.Update(user);
+            else if (ModelState.IsValid)
+            {
+                string salt = "sheldonthemightylittlegeniusman";
+                string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
+                user.Password = hashedPassword;
+                return base.Update(user);
+            }
+            return View(user);
         }
 
         [HttpGet]

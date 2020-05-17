@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.Designer.cs">
       <DependentUpon>202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005171303193_AddedValidationAttributesToTheModels.cs" />
+    <Compile Include="Migrations\202005171303193_AddedValidationAttributesToTheModels.Designer.cs">
+      <DependentUpon>202005171303193_AddedValidationAttributesToTheModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\AthleteRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.resx">
       <DependentUpon>202004302111298_AddingLazyLoadingOnCommentsInTheNewsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005171303193_AddedValidationAttributesToTheModels.resx">
+      <DependentUpon>202005171303193_AddedValidationAttributesToTheModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
