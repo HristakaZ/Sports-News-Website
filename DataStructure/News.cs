@@ -20,7 +20,6 @@ namespace DataStructure
         [Required]
         [MinLength(10)]
         public string Content { get; set; }
-        [Required]
         public string Photo { get; set; }
         public Users User { get; set; }
         public virtual List<Comments> Comments { get; set; }

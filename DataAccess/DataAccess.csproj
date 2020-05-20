@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202005171303193_AddedValidationAttributesToTheModels.Designer.cs">
       <DependentUpon>202005171303193_AddedValidationAttributesToTheModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005201758540_RemovedUnnecessaryPhotoValidationInTheNewsModel.cs" />
+    <Compile Include="Migrations\202005201758540_RemovedUnnecessaryPhotoValidationInTheNewsModel.Designer.cs">
+      <DependentUpon>202005201758540_RemovedUnnecessaryPhotoValidationInTheNewsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\AthleteRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005171303193_AddedValidationAttributesToTheModels.resx">
       <DependentUpon>202005171303193_AddedValidationAttributesToTheModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005201758540_RemovedUnnecessaryPhotoValidationInTheNewsModel.resx">
+      <DependentUpon>202005201758540_RemovedUnnecessaryPhotoValidationInTheNewsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

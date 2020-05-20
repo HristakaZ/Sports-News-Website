@@ -1,4 +1,4 @@
-﻿@model DataStructure.News
+﻿@model Sports_News_Website.ViewModels.NewsViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -13,10 +13,7 @@
     <div class="form-horizontal">
         <h4>News</h4>
         <hr />
-        <div class="form-group">
-            @Html.HiddenFor(model => model.ID)
-        </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,6 +31,9 @@
         </div>
 
         <input type="file" name="Photo" id="Photo" />
+        <div>
+            @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

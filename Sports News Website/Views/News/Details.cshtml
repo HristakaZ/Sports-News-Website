@@ -39,14 +39,17 @@
         </dt>
 
         <dd>
-            @foreach (Comments comment in Model.Item2)
+            @if (Model.Item2 != null)
             {
-            <dd>
-                <p>@comment.User.Username</p>
-            </dd>
-            <dd>
-                <p>@comment.Content</p>
-            </dd>
+                foreach (Comments comment in Model.Item2)
+                {
+                <dd>
+                    <p>@comment.User.Username</p>
+                </dd>
+                <dd>
+                    <p>@comment.Content</p>
+                </dd>
+            }
         }
 
         </dl>
