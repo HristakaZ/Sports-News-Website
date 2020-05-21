@@ -80,13 +80,16 @@ namespace Sports_News_Website.Controllers
         [CustomAuthorization]
         public new ActionResult Update(HttpPostedFileBase httpPostedFileBase, News news)
         {
-            if (ModelState.IsValid)
+            if (httpPostedFileBase != null)
             {
                 string fileName = httpPostedFileBase.FileName; // the photo that is uploaded
                 string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
                 string targetPath = Path.Combine(targetFolder, fileName); // the whole path
                 httpPostedFileBase.SaveAs(targetPath); // saving the photo
                 news.Photo = fileName;
+            }
+            if (ModelState.IsValid)
+            {
                 return base.Update(news);
             }
             else

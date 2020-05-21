@@ -31,7 +31,8 @@ namespace Sports_News_Website.Controllers
             List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
             News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
             comment.News = currentNews;
-            return base.Create(comment);
+            UnitOfWork.UOW.CommentRepository.Create(comment);
+            return RedirectToAction("Details", "News", currentNews);
         }
         [HttpGet]
         public new ActionResult Read()
