@@ -18,7 +18,6 @@ namespace Sports_News_Website.ViewModels
         [Required]
         [MinLength(10)]
         public string Content { get; set; }
-        [Required]
         public HttpPostedFileBase Photo { get; set; }
         public NewsViewModel()
         {

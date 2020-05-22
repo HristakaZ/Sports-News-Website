@@ -78,18 +78,29 @@ namespace Sports_News_Website.Controllers
         }
         [HttpPost]
         [CustomAuthorization]
-        public new ActionResult Update(HttpPostedFileBase httpPostedFileBase, News news)
+        public new ActionResult Update(NewsViewModel newsViewModel)
         {
-            if (httpPostedFileBase != null)
+            News news = new News();
+            List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+            News currentNews = allNews.Where(x => x.ID == newsViewModel.ID).FirstOrDefault();
+            if (newsViewModel.Photo == null)
             {
-                string fileName = httpPostedFileBase.FileName; // the photo that is uploaded
+                news.Photo = currentNews.Photo;
+            }
+            if (newsViewModel.Photo != null)
+            {
+                //TO DO : MAKE AN INSERT IMAGE SERVICE AND CHECK FOR THE EXTENSIONS (IF THEY ARE NOT IMAGES, ADD AN ERROR)
+                string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
                 string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
                 string targetPath = Path.Combine(targetFolder, fileName); // the whole path
-                httpPostedFileBase.SaveAs(targetPath); // saving the photo
+                newsViewModel.Photo.SaveAs(targetPath); // saving the photo
                 news.Photo = fileName;
             }
             if (ModelState.IsValid)
             {
+                news.ID = newsViewModel.ID;
+                news.Title = newsViewModel.Title;
+                news.Content = newsViewModel.Content;
                 return base.Update(news);
             }
             else
