@@ -30,15 +30,23 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Create(AthleteViewModel athleteViewModel)
         {
-            List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
-            Sports currentSport = allSports.Where(x => x.ID == athleteViewModel.Sport).FirstOrDefault();
-            Athletes athlete = new Athletes
+            Athletes athlete = new Athletes();
+            if (ModelState.IsValid)
             {
-                ID = athleteViewModel.ID,
-                Name = athleteViewModel.Name,
-                Sport = currentSport
-            };
-            return base.Create(athlete);
+                List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+                Sports currentSport = allSports.Where(x => x.ID == athleteViewModel.Sport).FirstOrDefault();
+                athlete.ID = athleteViewModel.ID;
+                athlete.Name = athleteViewModel.Name;
+                athlete.Sport = currentSport;
+                return base.Create(athlete);
+            }
+            else
+            {
+                List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+                SelectList selectListItems = new SelectList(allSports, "ID", "Name");
+                ViewData["SportsList"] = selectListItems;
+                return View(athlete);
+            }
         }
         [HttpGet]
         public new ActionResult Read()
@@ -48,12 +56,40 @@ namespace Sports_News_Website.Controllers
         [HttpGet]
         public new ActionResult Update(int id)
         {
+            List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+            SelectList selectListItems = new SelectList(allSports, "ID", "Name");
+            ViewData["SportsList"] = selectListItems;
             return base.Update(id);
         }
         [HttpPost]
-        public new ActionResult Update(Athletes athlete)
+        public new ActionResult Update(AthleteViewModel athleteViewModel)
         {
-            return base.Update(athlete);
+            Athletes athlete = new Athletes();
+            List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
+            Sports currentSport = allSports.Where(x => x.ID == athleteViewModel.Sport).FirstOrDefault();
+            List<Athletes> allAthletes = UnitOfWork.UOW.AthleteRepository.GetAll();
+            Athletes currentAthlete = allAthletes.Where(x => x.ID == athleteViewModel.ID).FirstOrDefault();
+            if (!ModelState.IsValid)
+            {
+                SelectList selectListItems = new SelectList(allSports, "ID", "Name");
+                ViewData["SportsList"] = selectListItems;
+                return View(currentAthlete);
+            }
+            if (athleteViewModel.Sport == 0)
+            {
+                athlete.ID = athleteViewModel.ID;
+                athlete.Name = athleteViewModel.Name;
+                athlete.Sport = currentAthlete.Sport;
+                return base.Update(athlete);
+            }
+            if (athleteViewModel.Sport != 0)
+            {
+                athlete.ID = athleteViewModel.ID;
+                athlete.Name = athleteViewModel.Name;
+                athlete.Sport = currentSport;
+                return base.Update(athlete);
+            }
+            return View(currentAthlete);
         }
         [HttpGet]
         public new ActionResult Delete(int? id)
