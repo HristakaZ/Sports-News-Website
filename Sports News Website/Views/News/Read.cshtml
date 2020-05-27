@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<DataStructure.News>
+@using Sports_News_Website.DTOs
 
 @{
     ViewBag.Title = "Read";
@@ -26,26 +27,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            <img src="~/Photo/@item.Photo" alt = "Alternate Text" height = "40" width = "40" />
-        </td>
-        <td>
-            News made by : @Html.DisplayFor(modelItem => item.User.Username)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "Update", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @if (item.Photo == null)
+                {
+                    <img src="~/Photo/no-image-icon.png" alt="No photo available." height="40" width="40" />
+                }
+                else if (item.Photo != null)
+                {
+                    <img src="~/Photo/@item.Photo" height="40" width="40" />
+                }
+            </td>
+            <td>
+                News made by : @Html.DisplayFor(modelItem => item.User.Username)
+            </td>
+            <td>
+            <td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @if (SessionDTO.IsAdmin == true)
+                {
+                <td>@Html.ActionLink("Update", "Update", new { id = item.ID }) |</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.ID }) |</td>
+            }
+                <td>
+                </td>
+            </tr>
+        }
 
 </table>

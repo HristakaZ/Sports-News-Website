@@ -32,19 +32,20 @@ namespace Sports_News_Website.Controllers
         [CustomAuthorization]
         public ActionResult Create(NewsViewModel newsViewModel)
         {
+            News news = new News();
             if (ModelState.IsValid)
             {
-                string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
-                string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
-                string targetPath = Path.Combine(targetFolder, fileName); // the whole path
-                newsViewModel.Photo.SaveAs(targetPath); // saving the photo
-                News news = new News
+                if (newsViewModel.Photo != null)
                 {
-                    ID = newsViewModel.ID,
-                    Title = newsViewModel.Title,
-                    Content = newsViewModel.Content,
-                    Photo = fileName
-                };
+                    string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
+                    string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
+                    string targetPath = Path.Combine(targetFolder, fileName); // the whole path
+                    newsViewModel.Photo.SaveAs(targetPath); // saving the photo
+                    news.Photo = fileName;
+                }
+                news.ID = newsViewModel.ID;
+                news.Title = newsViewModel.Title;
+                news.Content = newsViewModel.Content;
                 List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
                 Users currentUser = allUsers.Where(x => x.ID == SessionDTO.ID).FirstOrDefault();
                 news.User = currentUser;
@@ -118,6 +119,16 @@ namespace Sports_News_Website.Controllers
         [CustomAuthorization]
         public new ActionResult Delete(int id)
         {
+            List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+            News currentNews = allNews.Where(x => x.ID == id).FirstOrDefault();
+            /* Adding .ToList() method in the foreach loop for the collection (the list) because it was giving the error 
+               'Collection was modified; enumeration operation may not execute.'.
+            After checking in stackoverflow, .NET doesn't support collections to be enumerated and modified at the same
+            time, that is why an exception was given before.*/
+            foreach (Comments comment in currentNews.Comments.ToList())
+            {
+                UnitOfWork.UOW.CommentRepository.Delete(comment.ID);
+            }
             return base.Delete(id);
         }
     }
