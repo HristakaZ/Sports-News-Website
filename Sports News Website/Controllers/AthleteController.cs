@@ -62,32 +62,23 @@ namespace Sports_News_Website.Controllers
             return base.Update(id);
         }
         [HttpPost]
-        public new ActionResult Update(AthleteViewModel athleteViewModel)
+        public new ActionResult Update(UpdateAthleteViewModel updateAthleteViewModel)
         {
-            Athletes athlete = new Athletes();
             List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
-            Sports currentSport = allSports.Where(x => x.ID == athleteViewModel.Sport).FirstOrDefault();
+            Sports currentSport = allSports.Where(x => x.ID == updateAthleteViewModel.Sport).FirstOrDefault();
             List<Athletes> allAthletes = UnitOfWork.UOW.AthleteRepository.GetAll();
-            Athletes currentAthlete = allAthletes.Where(x => x.ID == athleteViewModel.ID).FirstOrDefault();
-            if (!ModelState.IsValid)
+            Athletes currentAthlete = allAthletes.Where(x => x.ID == updateAthleteViewModel.ID).FirstOrDefault();
+            SelectList selectListItems = new SelectList(allSports, "ID", "Name");
+            ViewData["SportsList"] = selectListItems;
+            if (ModelState.IsValid)
             {
-                SelectList selectListItems = new SelectList(allSports, "ID", "Name");
-                ViewData["SportsList"] = selectListItems;
-                return View(currentAthlete);
-            }
-            if (athleteViewModel.Sport == 0)
-            {
-                athlete.ID = athleteViewModel.ID;
-                athlete.Name = athleteViewModel.Name;
-                athlete.Sport = currentAthlete.Sport;
-                return base.Update(athlete);
-            }
-            if (athleteViewModel.Sport != 0)
-            {
-                athlete.ID = athleteViewModel.ID;
-                athlete.Name = athleteViewModel.Name;
-                athlete.Sport = currentSport;
-                return base.Update(athlete);
+                if (updateAthleteViewModel.Sport != null)
+                {
+                    currentAthlete.Sport = currentSport;
+                }
+                currentAthlete.ID = updateAthleteViewModel.ID;
+                currentAthlete.Name = updateAthleteViewModel.Name;
+                return base.Update(currentAthlete);
             }
             return View(currentAthlete);
         }
