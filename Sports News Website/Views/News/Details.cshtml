@@ -1,4 +1,5 @@
 ﻿@using DataStructure;
+@using Sports_News_Website.DTOs
 @model Tuple<News, List<Comments>>
 @{
     ViewBag.Title = "Details";
@@ -48,6 +49,11 @@
                 </dd>
                 <dd>
                     <p>@comment.Content</p>
+                    @if (comment.User.ID == SessionDTO.ID || SessionDTO.IsAdmin == true)
+                    {
+                        <td>@Html.ActionLink("Update", "Update", "Comment", new { id = comment.ID }, null) |</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.ID }, null) </td>
+                    }
                 </dd>
             }
         }

@@ -21,12 +21,14 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Read")
+            @Html.ActionLink("Back to News", "Details", "News", new { id = Model.News.ID }, new { })
         </div>
     }
 </div>

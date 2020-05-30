@@ -25,39 +25,101 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public new ActionResult Create(Comments comment)
         {
-            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
-            Users currentUser = allUsers.Where(x => x.ID == SessionDTO.ID).FirstOrDefault();
-            comment.User = currentUser;
-            List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
-            News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
-            comment.News = currentNews;
-            UnitOfWork.UOW.CommentRepository.Create(comment);
-            return RedirectToAction("Details", "News", currentNews);
-        }
-        [HttpGet]
-        public new ActionResult Read()
-        {
-            return base.Read();
+            if (ModelState.IsValid)
+            {
+                List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+                Users currentUser = allUsers.Where(x => x.ID == SessionDTO.ID).FirstOrDefault();
+                comment.User = currentUser;
+                List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+                News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
+                comment.News = currentNews;
+                UnitOfWork.UOW.CommentRepository.Create(comment);
+                UnitOfWork.UOW.Save();
+                return RedirectToAction("Details", "News", currentNews);
+            }
+            else
+            {
+                return View(comment);
+            }
         }
         [HttpGet]
         public new ActionResult Update(int id)
         {
-            return base.Update(id);
+            List<Comments> allComments = UnitOfWork.UOW.CommentRepository.GetAll();
+            Comments currentComment = allComments.Where(x => x.ID == id).FirstOrDefault();
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            Users currentUser = allUsers.Where(x => x.ID == currentComment.User.ID).FirstOrDefault();
+            if (currentUser.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                return base.Update(id);
+            }
         }
         [HttpPost]
         public new ActionResult Update(Comments comment)
         {
-            return base.Update(comment);
+            if (ModelState.IsValid)
+            {
+                List<Comments> allComments = UnitOfWork.UOW.CommentRepository.GetAll();
+                Comments currentComment = allComments.Where(x => x.ID == comment.ID).FirstOrDefault();
+                List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+                Users currentUser = allUsers.Where(x => x.ID == currentComment.User.ID).FirstOrDefault();
+                if (currentUser.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+                {
+                    return new ViewResult { ViewName = "InsufficientPermission" };
+                }
+                else
+                {
+                    List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+                    News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
+                    UnitOfWork.UOW.CommentRepository.Update(comment);
+                    UnitOfWork.UOW.Save();
+                    return RedirectToAction("Details", "News", currentNews);
+                }
+            }
+            else
+            {
+                return View(comment);
+            }
         }
         [HttpGet]
         public new ActionResult Delete(int? id)
         {
-            return base.Delete(id);
+            List<Comments> allComments = UnitOfWork.UOW.CommentRepository.GetAll();
+            Comments currentComment = allComments.Where(x => x.ID == id).FirstOrDefault();
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            Users currentUser = allUsers.Where(x => x.ID == currentComment.User.ID).FirstOrDefault();
+            if (currentUser.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                return base.Delete(id);
+            }
         }
         [HttpPost]
         public new ActionResult Delete(int id)
         {
-            return base.Delete(id);
+            List<Comments> allComments = UnitOfWork.UOW.CommentRepository.GetAll();
+            Comments currentComment = allComments.Where(x => x.ID == id).FirstOrDefault();
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            Users currentUser = allUsers.Where(x => x.ID == currentComment.User.ID).FirstOrDefault();
+            if (currentUser.ID != SessionDTO.ID && SessionDTO.IsAdmin == false)
+            {
+                return new ViewResult { ViewName = "InsufficientPermission" };
+            }
+            else
+            {
+                List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+                News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
+                UnitOfWork.UOW.CommentRepository.Delete(id);
+                UnitOfWork.UOW.Save();
+                return RedirectToAction("Details", "News", currentNews);
+            }
         }
     }
 }
