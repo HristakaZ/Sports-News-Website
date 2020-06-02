@@ -39,7 +39,11 @@ namespace Sports_News_Website.Controllers
             }
             else
             {
-                return View(comment);
+                List<News> allNews = UnitOfWork.UOW.NewsRepository.GetAll();
+                News currentNews = allNews.Where(x => x.ID == NewsDTO.NewsID).FirstOrDefault();
+                var tupleModel = new Tuple<News, List<Comments>>(currentNews,
+                currentNews.Comments);
+                return View("~/Views/News/Details.cshtml", tupleModel);
             }
         }
         [HttpGet]
@@ -82,6 +86,11 @@ namespace Sports_News_Website.Controllers
             }
             else
             {
+                List<Comments> allComments = UnitOfWork.UOW.CommentRepository.GetAll();
+                Comments currentComment = allComments.Where(x => x.ID == comment.ID).FirstOrDefault();
+                List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+                Users currentUser = allUsers.Where(x => x.ID == currentComment.User.ID).FirstOrDefault();
+                comment.News = currentComment.News;
                 return View(comment);
             }
         }

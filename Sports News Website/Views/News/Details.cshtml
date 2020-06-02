@@ -76,7 +76,15 @@
                     @Html.ValidationMessageFor(model => new Comments { }.Content, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <script>
+                    function scrollFunction() {
+                        window.scrollTo(0, document.body.scrollHeight);
+                    }
+                    setTimeout(scrollFunction);
+                </script>
+            }
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -84,14 +92,6 @@
             </div>
         </div>
     }
-
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
 
     <p>
         @Html.ActionLink("Update", "Update", new { id = Model.Item1.ID }) |
