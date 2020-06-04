@@ -94,6 +94,10 @@
     }
 
     <p>
-        @Html.ActionLink("Update", "Update", new { id = Model.Item1.ID }) |
+        @if (SessionDTO.IsAdmin == true)
+        {
+            @Html.ActionLink("Update", "Update", new { id = Model.Item1.ID })
+        }
+        |
         @Html.ActionLink("Back to List", "Read")
     </p>

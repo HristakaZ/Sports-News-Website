@@ -125,9 +125,14 @@ namespace Sports_News_Website.Controllers
                'Collection was modified; enumeration operation may not execute.'.
             After checking in stackoverflow, .NET doesn't support collections to be enumerated and modified at the same
             time, that is why an exception was given before.*/
-            foreach (Comments comment in currentNews.Comments.ToList())
+            /* checking for null value in the comments 
+                (if we don't check, there will be an exception thrown)*/
+            if (currentNews.Comments != null) 
             {
-                UnitOfWork.UOW.CommentRepository.Delete(comment.ID);
+                foreach (Comments comment in currentNews.Comments.ToList())
+                {
+                    UnitOfWork.UOW.CommentRepository.Delete(comment.ID);
+                }
             }
             return base.Delete(id);
         }

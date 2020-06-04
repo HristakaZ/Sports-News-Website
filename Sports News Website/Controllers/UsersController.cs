@@ -120,16 +120,15 @@ namespace Sports_News_Website.Controllers
         {
             string salt = "sheldonthemightylittlegeniusman";
             string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt) + salt;
-            if (UnitOfWork.UOW.UserRepository.GetAll().Exists(x => x.Username == user.Username
-            && x.Password == hashedPassword))
+            List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
+            if (allUsers.Exists(x => x.Username == user.Username && x.Password == hashedPassword))
             {
                 LoginService.Login(user);
                 return RedirectToAction(nameof(Read));
             }
-            else if (UnitOfWork.UOW.UserRepository.GetAll().Exists(x => x.Username == user.Username
-            && x.Password == hashedPassword))
+            else
             {
-                return HttpNotFound();
+                ModelState.AddModelError("", "Wrong username or password!");
             }
             return View(user);
         }
