@@ -37,11 +37,17 @@ namespace Sports_News_Website.Controllers
             {
                 if (newsViewModel.Photo != null)
                 {
-                    string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
-                    string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
-                    string targetPath = Path.Combine(targetFolder, fileName); // the whole path
-                    newsViewModel.Photo.SaveAs(targetPath); // saving the photo
-                    news.Photo = fileName;
+                    bool isImageValid = ImageUploadService.CheckImageExtension(newsViewModel);
+                    if (isImageValid == true)
+                    {
+                        string fileName = ImageUploadService.UploadImage(newsViewModel);
+                        news.Photo = fileName;
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("PhotoContentTypeError", "The file you are trying to upload is not an image!");
+                        return View(newsViewModel);
+                    }
                 }
                 news.ID = newsViewModel.ID;
                 news.Title = newsViewModel.Title;
@@ -127,7 +133,7 @@ namespace Sports_News_Website.Controllers
             time, that is why an exception was given before.*/
             /* checking for null value in the comments 
                 (if we don't check, there will be an exception thrown)*/
-            if (currentNews.Comments != null) 
+            if (currentNews.Comments != null)
             {
                 foreach (Comments comment in currentNews.Comments.ToList())
                 {

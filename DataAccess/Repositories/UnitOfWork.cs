@@ -90,7 +90,7 @@ namespace DataAccess.Repositories
         {
             dbContext.SaveChanges();
         }
-        public UnitOfWork()
+        private UnitOfWork()
         {
             this.dbContext = new SportsNewsDBContext();
         }
