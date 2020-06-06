@@ -1,5 +1,6 @@
-﻿@model DataStructure.Users
+﻿@using Sports_News_Website.ViewModels
 @using Sports_News_Website.DTOs;
+@model UpdateUserViewModel
 
 @{
     ViewBag.Title = "Update";
@@ -11,57 +12,49 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Users</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ID)
+    <div class="form-horizontal">
+        <h4>Users</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Password, new { Value = "", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    @if (SessionDTO.IsAdmin == true)
-    {
         <div class="form-group">
-            @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsAdmin)
-                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
-    else
-    {
-        <div class="form-group">
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.HiddenFor(model => model.IsAdmin)
-                    @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+        @if (SessionDTO.IsAdmin == true)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsAdmin)
+                        @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.HiddenFor(model => model.IsAdmin)
+                        @Html.ValidationMessageFor(model => model.IsAdmin, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
 }
 
 <div>

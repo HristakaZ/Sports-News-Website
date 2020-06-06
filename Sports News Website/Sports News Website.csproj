@@ -177,6 +177,8 @@
     <Compile Include="ViewModels\AthleteViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="ViewModels\UpdateAthleteViewModel.cs" />
+    <Compile Include="ViewModels\ChangeUserPasswordViewModel.cs" />
+    <Compile Include="ViewModels\UpdateUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -236,6 +238,7 @@
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\Athlete\Create.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
