@@ -8,7 +8,10 @@
 <h2>News</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (SessionDTO.IsAdmin == true)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>

@@ -7,8 +7,42 @@ namespace Sports_News_Website.DTOs
 {
     public class SessionDTO
     {
-        public static int ID { get; set; }
-        public static string Username { get; set; }
-        public static bool IsAdmin { get; set; }
+        public static int ID
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.Session["UserID"] == null ? 0 : (int)System.Web.HttpContext.Current.Session["UserID"];
+            }
+            set
+            {
+                System.Web.HttpContext.Current.Session["UserID"] = value;
+            }
+        }
+        public static string Username
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.Session["UserName"] == null ? null : (string)System.Web.HttpContext.Current.Session["UserName"];
+            }
+            set
+            {
+                System.Web.HttpContext.Current.Session["UserName"] = value;
+            }
+        }
+        public static bool IsAdmin
+        {
+            get
+            {
+                return System.Web.HttpContext.Current.Session["UserAuthorization"] == null ? false : (bool)System.Web.HttpContext.Current.Session["UserAuthorization"];
+            }
+            set
+            {
+                System.Web.HttpContext.Current.Session["UserAuthorization"] = value;
+            }
+        }
+        private SessionDTO()
+        {
+
+        }
     }
 }

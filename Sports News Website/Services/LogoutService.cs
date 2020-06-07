@@ -8,7 +8,7 @@ namespace Sports_News_Website.Services
 {
     public class LogoutService
     {
-        public static void Logout()
+        public void Logout()
         {
             SessionDTO.ID = 0;
             SessionDTO.Username = null;

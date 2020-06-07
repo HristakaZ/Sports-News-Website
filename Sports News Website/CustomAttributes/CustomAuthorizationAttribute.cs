@@ -12,7 +12,8 @@ namespace Sports_News_Website.CustomAttributes
     {
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            SessionUserAuthorizationService.SetSessionValues(filterContext);
+            SessionUserAuthorizationService sessionUserAuthorizationService = new SessionUserAuthorizationService();
+            sessionUserAuthorizationService.SetSessionValues(filterContext);
         }
     }
 }

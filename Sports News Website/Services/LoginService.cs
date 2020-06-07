@@ -9,9 +9,9 @@ using System.Web;
 
 namespace Sports_News_Website.Services
 {
-    public static class LoginService
+    public class LoginService
     {
-        public static void Login(Users user)
+        public void Login(Users user)
         {
             System.Web.HttpContext.Current.Session["UserName"] = user.Username;
             List<Users> users = UnitOfWork.UOW.UserRepository.GetAll();

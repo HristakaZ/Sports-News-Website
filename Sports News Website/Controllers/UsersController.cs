@@ -29,8 +29,9 @@ namespace Sports_News_Website.Controllers
         {
             if (ModelState.IsValid)
             {
+                HashingPasswordService hashingPasswordService = new HashingPasswordService();
                 string salt = "sheldonthemightylittlegeniusman";
-                string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt);
+                string hashedPassword = hashingPasswordService.GenerateSHA256Hash(user.Password, salt);
                 user.Password = hashedPassword;
                 user.IsAdmin = false;
                 return base.Create(user);
@@ -114,8 +115,9 @@ namespace Sports_News_Website.Controllers
             }
             if (ModelState.IsValid)
             {
+                HashingPasswordService hashingPasswordService = new HashingPasswordService();
                 string salt = "sheldonthemightylittlegeniusman";
-                string hashedPassword = HashingPasswordService.GenerateSHA256Hash(changeUserPasswordViewModel.Password, salt);
+                string hashedPassword = hashingPasswordService.GenerateSHA256Hash(changeUserPasswordViewModel.Password, salt);
                 changeUserPasswordViewModel.Password = hashedPassword;
                 List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
                 Users user = allUsers.Where(x => x.ID == changeUserPasswordViewModel.ID).FirstOrDefault();
@@ -164,12 +166,14 @@ namespace Sports_News_Website.Controllers
         [HttpPost]
         public ActionResult Login(Users user)
         {
+            HashingPasswordService hashingPasswordService = new HashingPasswordService();
             string salt = "sheldonthemightylittlegeniusman";
-            string hashedPassword = HashingPasswordService.GenerateSHA256Hash(user.Password, salt);
+            string hashedPassword = hashingPasswordService.GenerateSHA256Hash(user.Password, salt);
             List<Users> allUsers = UnitOfWork.UOW.UserRepository.GetAll();
             if (allUsers.Exists(x => x.Username == user.Username && x.Password == hashedPassword))
             {
-                LoginService.Login(user);
+                LoginService loginService = new LoginService();
+                loginService.Login(user);
                 return RedirectToAction(nameof(Read));
             }
             else
@@ -181,7 +185,8 @@ namespace Sports_News_Website.Controllers
 
         public ActionResult Logout()
         {
-            LogoutService.Logout();
+            LogoutService logoutService = new LogoutService();
+            logoutService.Logout();
             return RedirectToAction(nameof(Read));
         }
     }

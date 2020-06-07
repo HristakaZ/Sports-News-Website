@@ -7,11 +7,13 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Services
 {
-    public static class SessionUserAuthenticationService
+    public class SessionUserAuthenticationService
     {
-        public static void SetSessionValues(AuthorizationContext filterContext)
+        public void SetSessionValues(AuthorizationContext filterContext)
         {
-            bool UserIsNotAuthenticated = SessionDTO.ID == 0 && SessionDTO.Username == null && SessionDTO.IsAdmin == false;
+            bool UserIsNotAuthenticated = SessionDTO.ID == 0 &&
+                SessionDTO.Username == null
+                && SessionDTO.IsAdmin == false;
             if (UserIsNotAuthenticated)
             {
                 filterContext.Result = new RedirectResult("~/Users/Login");

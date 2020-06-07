@@ -37,10 +37,11 @@ namespace Sports_News_Website.Controllers
             {
                 if (newsViewModel.Photo != null)
                 {
-                    bool isImageValid = ImageUploadService.CheckImageExtension(newsViewModel);
+                    ImageUploadService imageUploadService = new ImageUploadService();
+                    bool isImageValid = imageUploadService.CheckImageExtension(newsViewModel);
                     if (isImageValid == true)
                     {
-                        string fileName = ImageUploadService.UploadImage(newsViewModel);
+                        string fileName = imageUploadService.UploadImage(newsViewModel);
                         news.Photo = fileName;
                     }
                     else
@@ -96,7 +97,6 @@ namespace Sports_News_Website.Controllers
             }
             if (newsViewModel.Photo != null)
             {
-                //TO DO : MAKE AN INSERT IMAGE SERVICE AND CHECK FOR THE EXTENSIONS (IF THEY ARE NOT IMAGES, ADD AN ERROR)
                 string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
                 string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
                 string targetPath = Path.Combine(targetFolder, fileName); // the whole path

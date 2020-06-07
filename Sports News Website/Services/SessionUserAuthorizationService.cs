@@ -9,12 +9,14 @@ using System.Web.SessionState;
 
 namespace Sports_News_Website.Services
 {
-    public static class SessionUserAuthorizationService
+    public class SessionUserAuthorizationService
     {
         //make bool variables that have the values of the conditions (for each if make a variable)
-        public static void SetSessionValues(AuthorizationContext filterContext)
+        public void SetSessionValues(AuthorizationContext filterContext)
         {
-            bool UserIsNotAdmin = SessionDTO.ID != 0 && SessionDTO.Username != null && SessionDTO.IsAdmin == false;
+            bool UserIsNotAdmin = SessionDTO.ID != 0 &&
+                SessionDTO.Username != null &&
+                SessionDTO.IsAdmin == false;
             if (UserIsNotAdmin)
             {
                 filterContext.Result = new ViewResult { ViewName = "InsufficientPermission" };

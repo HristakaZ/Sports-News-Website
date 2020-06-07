@@ -10,9 +10,9 @@ using System.Web.Mvc;
 
 namespace Sports_News_Website.Services
 {
-    public static class ImageUploadService
+    public class ImageUploadService
     {
-        public static string UploadImage(NewsViewModel newsViewModel)
+        public string UploadImage(NewsViewModel newsViewModel)
         {
             string fileName = newsViewModel.Photo.FileName; // the photo that is uploaded
             string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/Photo"); // the folder where the photo needs to go
@@ -20,7 +20,7 @@ namespace Sports_News_Website.Services
             newsViewModel.Photo.SaveAs(targetPath); // saving the photo
             return fileName;
         }
-        public static bool CheckImageExtension(NewsViewModel newsViewModel)
+        public bool CheckImageExtension(NewsViewModel newsViewModel)
         {
             if (!newsViewModel.Photo.FileName.EndsWith(".jpg") && !newsViewModel.Photo.FileName.EndsWith(".jpeg") && !newsViewModel.Photo.FileName.EndsWith(".png"))
             {
