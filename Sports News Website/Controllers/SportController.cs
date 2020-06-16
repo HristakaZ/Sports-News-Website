@@ -10,7 +10,6 @@ using System.Web.Mvc;
 namespace Sports_News_Website.Controllers
 {
     [CustomAuthentication]
-    [CustomAuthorization]
     public class SportController : BaseController<Sports>
     {
         public SportController() : base(UnitOfWork.UOW.SportRepository)
@@ -18,11 +17,13 @@ namespace Sports_News_Website.Controllers
 
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Create()
         {
             return base.Create();
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Create(Sports sport)
         {
             return base.Create(sport);
@@ -33,21 +34,25 @@ namespace Sports_News_Website.Controllers
             return base.Read();
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Update(int id)
         {
             return base.Update(id);
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Update(Sports sport)
         {
             return base.Update(sport);
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Delete(int? id)
         {
             return base.Delete(id);
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Delete(int id)
         {
             return base.Delete(id);

@@ -1,4 +1,5 @@
 ﻿@using DataStructure;
+@using Sports_News_Website.DTOs
 @model IEnumerable<Athletes>
 
 @{
@@ -6,10 +7,12 @@
 }
 
 <h2>Athletes</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (SessionDTO.IsAdmin == true)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { Style = "color:white" })
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -30,10 +33,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Sport.Name)
             </td>
-            <td>
-                @Html.ActionLink("Update", "Update", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            @if (SessionDTO.IsAdmin == true)
+            {
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }, new { style = "color:white" } ) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color:white" } )
+                </td>
+            }
         </tr>
     }
 

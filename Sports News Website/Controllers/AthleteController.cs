@@ -12,7 +12,6 @@ using System.Web.Mvc;
 namespace Sports_News_Website.Controllers
 {
     [CustomAuthentication]
-    [CustomAuthorization]
     public class AthleteController : BaseController<Athletes>
     {
         public AthleteController() : base(UnitOfWork.UOW.AthleteRepository)
@@ -20,6 +19,7 @@ namespace Sports_News_Website.Controllers
 
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Create()
         {
             List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
@@ -28,6 +28,7 @@ namespace Sports_News_Website.Controllers
             return base.Create();
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Create(AthleteViewModel athleteViewModel)
         {
             Athletes athlete = new Athletes();
@@ -54,6 +55,7 @@ namespace Sports_News_Website.Controllers
             return base.Read();
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Update(int id)
         {
             List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
@@ -62,6 +64,7 @@ namespace Sports_News_Website.Controllers
             return base.Update(id);
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Update(UpdateAthleteViewModel updateAthleteViewModel)
         {
             List<Sports> allSports = UnitOfWork.UOW.SportRepository.GetAll();
@@ -83,11 +86,13 @@ namespace Sports_News_Website.Controllers
             return View(currentAthlete);
         }
         [HttpGet]
+        [CustomAuthorization]
         public new ActionResult Delete(int? id)
         {
             return base.Delete(id);
         }
         [HttpPost]
+        [CustomAuthorization]
         public new ActionResult Delete(int id)
         {
             return base.Delete(id);

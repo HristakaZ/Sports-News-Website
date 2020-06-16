@@ -1,13 +1,16 @@
 ﻿@model IEnumerable<DataStructure.Sports>
+@using Sports_News_Website.DTOs
 
 @{
     ViewBag.Title = "Sports";
 }
 
 <h2>Sports</h2>
-
+@if (SessionDTO.IsAdmin == true)
+{
+    @Html.ActionLink("Create New", "Create", new { style = "color:white" })
+}
 <p>
-    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -17,16 +20,20 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Update", "Update", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @if (SessionDTO.IsAdmin == true)
+            {
+                <td>
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }, new { style = "color:white" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color:white"})
+                </td>
+            }
+        </tr>
+    }
 
 </table>

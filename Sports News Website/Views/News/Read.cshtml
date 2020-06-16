@@ -10,7 +10,7 @@
 <p>
     @if (SessionDTO.IsAdmin == true)
     {
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", null, new { style = "color:white" })
     }
 </p>
 <table class="table">
@@ -55,11 +55,11 @@
             <td>
             <td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { style = "color:white"}) |
                 @if (SessionDTO.IsAdmin == true)
                 {
-                <td>@Html.ActionLink("Update", "Update", new { id = item.ID }) |</td>
-                <td>@Html.ActionLink("Delete", "Delete", new { id = item.ID }) |</td>
+                <td>@Html.ActionLink("Update", "Update", new { id = item.ID }, new { style = "color:white" }) |</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color:white" }) |</td>
             }
                 <td>
                 </td>

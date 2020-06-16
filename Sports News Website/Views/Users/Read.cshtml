@@ -44,18 +44,18 @@
             @if (SessionDTO.ID == item.ID && SessionDTO.IsAdmin == false)
             {
                 <td>
-                    @Html.ActionLink("Update", "Update", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.ID })
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }, new { style = "color:white" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color:white" }) |
+                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.ID }, new { style = "color:white" })
                 </td>
             }
 
             else if (SessionDTO.IsAdmin == true)
             {
                 <td>
-                    @Html.ActionLink("Update", "Update", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.ID })
+                    @Html.ActionLink("Update", "Update", new { id = item.ID }, new { style = "color:white" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { style = "color:white" }) |
+                    @Html.ActionLink("Change Password", "ChangePassword", new { id = item.ID }, new { style = "color:white"})
                 </td>
             }
         </tr>
