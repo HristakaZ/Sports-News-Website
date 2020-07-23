@@ -8,7 +8,6 @@ namespace DataAccess.Repositories
 {
     public interface IBaseRepository<T>
     {
-        //TO DO : must edit the repository (add CRUD methods)
         void Create();
         void Create(T entity);
         List<T> Read();

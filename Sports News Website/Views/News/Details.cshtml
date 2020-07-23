@@ -40,25 +40,6 @@
         </dt>
 
     </dl>
-    @*@if (Model.Item2 != null)
-        {
-            foreach (Comments comment in Model.Item2)
-            {
-
-                <table class="table-responsive">
-                    <tr>@comment.User.Username</tr>
-                    <br>
-                    <tr>@comment.Content</tr>
-                    <tr>
-                        @if (comment.User.ID == SessionDTO.ID || SessionDTO.IsAdmin == true)
-                        {
-                            <td>@Html.ActionLink("Update", "Update", "Comment", new { id = comment.ID }, null) |</td>
-                            <td>@Html.ActionLink("Delete", "Delete", "Comment", new { id = comment.ID }, null) </td>
-                        }
-                    </tr>
-                </table>
-            }
-        }*@
     <table class="table table-hover table-dark">
         <thead>
             <tr>
